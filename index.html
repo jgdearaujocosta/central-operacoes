@@ -521,6 +521,7 @@ h1,h2,h3,.page-head h1,.card-h h2,.card-h h3,.gate-card h2{font-family:var(--dis
 .report .foot .bz span{font-family:"Poppins",sans-serif;font-weight:700;font-size:17px;letter-spacing:-.045em;color:#141414}
 @media (max-width:640px){.report{padding:28px 20px}.report h1{font-size:32px}.report .rgrid{grid-template-columns:1fr}.report .rgrid div{border-right:0;border-bottom:1px solid #E2DBCF}.report .rtag{display:none}}
 
+
 /* ---------- atividades ---------- */
 .atv-tipos{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .atv-cta{margin-top:14px;display:flex;justify-content:flex-end}
@@ -1050,7 +1051,7 @@ const MES_ST = { aberto: { label: "Em aberto", cls: "b-gray" }, fechado: { label
 const PAPEL = { admin: { label: "Admin", cls: "b-dark" }, colaborador: { label: "Colaborador", cls: "b-gray" } };
 
 /* ---------- Estado inicial (somente cadastros reais, sem dados fictícios) ---------- */
-const USUARIOS_INICIAIS = [["Isabella", "admin"], ["Duda", "admin"], ["João", "colaborador"], ["Fellipe", "colaborador"], ["Gabriel", "colaborador"], ["André", "colaborador"], ["Letícia", "colaborador"]];
+const USUARIOS_INICIAIS = [["Isabella", "admin"], ["Duda", "admin"], ["João", "colaborador"], ["Fellipe", "colaborador"], ["Gabriel", "colaborador"], ["André", "colaborador"], ["Letícia", "colaborador"], ["Juliano", "colaborador"]];
 const TIPOS_INICIAIS = [["Evento", "avulso", 300], ["Produção", "avulso", 300], ["Ativação", "avulso", 0], ["Visita à loja", "avulso", 150], ["Conteúdo", "avulso", 0], ["Seeding", "avulso", 0], ["Reunião", "avulso", 0], ["Diária", "diaria", 250], ["Freelancer", "avulso", 0], ["Hora extra", "avulso", 0], ["Outro", "outro", 0]];
 const CATS_INICIAIS = ["Conteúdo", "Fotografia", "Seeding", "Influenciadores", "Loja", "Ativação", "Evento", "Reunião"];
 function estadoInicial() {
@@ -2541,6 +2542,7 @@ function viewColab(u) {
     <div class="card"><div class="card-h"><h2>Histórico financeiro</h2></div>${historicoFin(u.id)}</div>`;
 }
 
+
 /* ---------- Envio de arquivos: aceita JPG/PNG/PDF mesmo quando o navegador não informa o tipo;
    HEIC, BMP, TIFF e imagens acima de 20 MB viram JPG antes de enviar ---------- */
 const UP_OK = ["image/png", "image/jpeg", "image/gif", "image/webp", "application/pdf"];
@@ -3973,6 +3975,7 @@ function excluirMarca(id) {
   });
 }
 
+
 /* ---------- Excluir só o contrato (a marca continua) ---------- */
 function excluirContrato(marcaId) {
   const m = getMarca(marcaId); const c = getContrato(marcaId); if (!m || !c) return;
@@ -4111,6 +4114,7 @@ function encerrarObrigacao(id) {
       Repo.touch("core"); resyncFrom(d.desde, o.marcaId); render(); toast(`${o.nome} removida a partir de ${labelMes(d.desde)}.`);
     } });
 }
+
 
 </script>
 <script>
@@ -4642,6 +4646,7 @@ document.addEventListener("click", async e => {
     case "reset-senha": closeModal(); formResetSenha(id); break;
     case "recarregar": await carregarDados(); render(); toast("Dados atualizados."); break;
     case "login": entrarLocal(id); break;
+    case "criar-conta-novo": telaCriarContaNova(); break;
     case "vincular-admin": await vincularAdmin(id); break;
     case "pedir-acesso": case "entrar-colab": await entrarColaborador(id); break;
     case "gate-escolher": telaConfirmarNome(id, el.dataset.acao); break;
@@ -5011,10 +5016,51 @@ function senhaBadge(u) {
 /* ---------- Telas de entrada ---------- */
 function gate(html) { $("#gate").innerHTML = `<div class="gate-card"><div class="brandmark" aria-label="Boltz, Central de Operação"><div class="bz"><svg viewBox="0 0 16 26" aria-hidden="true"><path d="M11.5 0 2 14.2h5.6L3.4 26 14 10.6H8.3L11.5 0Z" fill="currentColor"/></svg><span>boltz</span></div><small>Central de operação</small></div>${html}</div>`; document.body.classList.add("gated"); }
 function ungate() { $("#gate").innerHTML = ""; document.body.classList.remove("gated"); }
+function telaCriarContaNova() {
+  gate(`<h2>Criar nova conta</h2><p class="muted">Digite seu nome e crie uma senha.</p>
+    <form onsubmit="criarContaNova(event)">
+      <div style="margin-bottom:12px"><label style="display:block;margin-bottom:6px;font-weight:500">Nome completo</label><input type="text" id="novaNome" placeholder="Seu nome" required style="width:100%;padding:8px;border:1px solid var(--line);border-radius:4px;font-size:14px"></div>
+      <div style="margin-bottom:12px"><label style="display:block;margin-bottom:6px;font-weight:500">Criar senha</label><input type="password" id="novaSenha" placeholder="Mínimo 6 caracteres" required minlength="6" style="width:100%;padding:8px;border:1px solid var(--line);border-radius:4px;font-size:14px"></div>
+      <div style="margin-bottom:20px"><label style="display:block;margin-bottom:6px;font-weight:500">Confirmar senha</label><input type="password" id="novaSenha2" placeholder="Repita a senha" required minlength="6" style="width:100%;padding:8px;border:1px solid var(--line);border-radius:4px;font-size:14px"></div>
+      <div style="display:flex;gap:8px"><button type="button" class="btn" onclick="telaLogin()">Voltar</button><button type="submit" class="btn primary">Criar conta</button></div>
+    </form>`);
+}
+async function criarContaNova(e) {
+  e.preventDefault();
+  const nome = document.getElementById("novaNome")?.value?.trim();
+  const senha = document.getElementById("novaSenha")?.value;
+  const senha2 = document.getElementById("novaSenha2")?.value;
+
+  if (!nome || nome.length < 2) { toast("Digite um nome válido"); return; }
+  if (!senha || senha.length < 6) { toast("Senha deve ter pelo menos 6 caracteres"); return; }
+  if (senha !== senha2) { toast("As senhas não conferem"); return; }
+
+  // Verifica se o nome já existe
+  if (S.dir.usuarios.some(u => u.nome.toLowerCase() === nome.toLowerCase())) {
+    toast("Este nome já existe. Escolha outro.");
+    return;
+  }
+
+  // Cria novo usuário
+  const novoId = "u_" + slug(nome);
+  const novoUser = { id: novoId, nome: nome, papel: "colaborador", ativo: true, funcao: "", email: "", telefone: "", claudeId: "", desativadoEm: "" };
+  S.dir.usuarios.push(novoUser);
+  Repo.touch("dir");
+
+  // Grava a senha
+  await gravarSenha(novoUser, senha, false);
+
+  toast("Conta criada com sucesso!");
+  // Faz login automático
+  SESSION.userId = novoId;
+  try { sessionStorage.setItem("gm2:user", novoId); } catch (_) { }
+  await carregarDados();
+  entrar();
+}
 function telaLogin() {
   const grupo = (t, arr) => `<h4 class="gate-h">${t}</h4><div class="gate-users">${arr.map(u => `<button class="gate-user" data-act="login" data-id="${u.id}">${avatar(u)}<span><b>${esc(u.nome)}</b><small>${PAPEL[u.papel].label}</small></span></button>`).join("")}</div>`;
   const at = S.dir.usuarios.filter(u => u.ativo);
-  gate(`<h2>Entrar</h2><p class="muted">Escolha seu nome e digite sua senha.</p>${grupo("Administradores", at.filter(u => u.papel === "admin"))}${grupo("Colaboradores", at.filter(u => u.papel === "colaborador"))}`);
+  gate(`<h2>Entrar</h2><p class="muted">Escolha seu nome e digite sua senha, ou crie uma nova conta.</p>${grupo("Administradores", at.filter(u => u.papel === "admin"))}${grupo("Colaboradores", at.filter(u => u.papel === "colaborador"))}<div class="gate-acts" style="margin-top:20px"><button type="button" class="btn" data-act="criar-conta-novo">+ Criar nova conta</button></div>`);
 }
 async function entrarLocal(id) {
   const u = getUser(id); if (!u || !u.ativo) return;
@@ -5164,58 +5210,6 @@ setInterval(() => { if (SESSION.userId && Date.now() - ULTIMA_ATIV > 30 * 60000)
   if (last && getUser(last)?.ativo) await entrarLocal(last); else telaLogin();
   setInterval(() => { const t = isoOf(new Date()); if (t !== TODAY && SESSION.userId && !$("#mform")) render(); else if (SESSION.userId && UI.view === "homeoffice" && !$("#mform")) render(); }, 60000);
 })();
-</script>
-
-<!-- Firebase Firestore Integration -->
-<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore-compat.js"></script>
-<script>
-const fbConfig = {
-  apiKey: "AIzaSyDm9KvhkD_z8iYEKqBv9zjZ7ifr-C6ohqc",
-  authDomain: "central-operacoes-be8ae.firebaseapp.com",
-  projectId: "central-operacoes-be8ae",
-  storageBucket: "central-operacoes-be8ae.firebasestorage.app",
-  messagingSenderId: "212499974080",
-  appId: "1:212499974080:web:701619935a21a6dc8d2a25",
-  measurementId: "G-969S8MP3YB"
-};
-
-function initFirebase() {
-  try {
-    const app = firebase.initializeApp(fbConfig);
-    const db = firebase.firestore(app);
-    if (typeof Repo !== "undefined") Repo.be = FirestoreBackend(db);
-    console.log("✅ Firebase OK!");
-  } catch (e) {
-    console.error("Firebase error:", e.message);
-  }
-}
-
-function FirestoreBackend(db) {
-  return {
-    async get(p) {
-      const [c, ...d] = p.split('/');
-      try { return (await db.collection(c).doc(d.join('/')).get()).data() || null; } catch (e) { return null; }
-    },
-    async set(p, d) {
-      const [c, ...dp] = p.split('/');
-      try { await db.collection(c).doc(dp.join('/')).set(d, { merge: true }); } catch (e) { }
-    },
-    async del(p) {
-      const [c, ...d] = p.split('/');
-      try { await db.collection(c).doc(d.join('/')).delete(); } catch (e) { }
-    },
-    async list(c) {
-      try { return (await db.collection(c).get()).docs.map(d => ({ id: d.id, ...d.data() })); } catch (e) { return []; }
-    }
-  };
-}
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initFirebase);
-} else {
-  initFirebase();
-}
 </script>
 </body>
 </html>
