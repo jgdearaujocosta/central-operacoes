@@ -939,10 +939,6 @@ tr.eu td{background:color-mix(in srgb,var(--accent) 7%,var(--surface))}
   .fz-row [data-l]::before{content:attr(data-l);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--fz-mut);font-weight:600}
   .fz-row.t .c-date{display:none}}
 </style>
-<!-- Firebase Scripts -->
-<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js"></script>
-
 </head>
 <body>
 <div class="app">
@@ -1072,96 +1068,6 @@ function estadoInicial() {
   };
 }
 let S = estadoInicial();
-
-/* ---------- Backends e Firebase ---------- */
-// Firebase Firestore Backend
-function FirestoreBackend(db) {
-  return {
-    async get(p) { 
-      try { 
-        const snap = await db.collection("app").doc(p).get(); 
-        return snap.exists ? clone(snap.data()) : null; 
-      } catch (e) { 
-        console.error("Firebase get error:", e); 
-        return null; 
-      } 
-    },
-    async set(p, d) { 
-      try { 
-        await db.collection("app").doc(p).set(clone(d)); 
-      } catch (e) { 
-        console.error("Firebase set error:", e); 
-      } 
-    },
-    async del(p) { 
-      try { 
-        await db.collection("app").doc(p).delete(); 
-      } catch (e) { 
-        console.error("Firebase del error:", e); 
-      } 
-    },
-    async list(col) { 
-      try { 
-        const snap = await db.collection("app").get();
-        return snap.docs
-          .filter(d => d.id.startsWith(col + "/"))
-          .map(d => ({ id: d.id.replace(col + "/", ""), data: clone(d.data()) })); 
-      } catch (e) { 
-        console.error("Firebase list error:", e); 
-        return []; 
-      } 
-    },
-    watch(col, cb, onErr, f) { 
-      try {
-        let q = db.collection("app");
-        return q.onSnapshot(
-          snap => {
-            const filtered = snap.docs
-              .filter(d => d.id.startsWith(col + "/"))
-              .map(d => ({ id: d.id.replace(col + "/", ""), data: clone(d.data()) }));
-            cb(filtered);
-          },
-          e => { console.error("Firebase watch error:", e); onErr && onErr(e); }
-        );
-      } catch (e) {
-        console.error("Firebase watch setup error:", e);
-        return () => {};
-      }
-    }
-  };
-}
-
-// Firebase Config
-const firebaseConfig = {
-  apiKey: "AIzaSyDm9KvhkD_z8iYEKqBv9zjZ7ifr-C6ohqc",
-  authDomain: "central-operacoes-be8ae.firebaseapp.com",
-  projectId: "central-operacoes-be8ae",
-  storageBucket: "central-operacoes-be8ae.firebasestorage.app",
-  messagingSenderId: "212499974080",
-  appId: "1:212499974080:web:701619935a21a6dc8d2a25",
-  measurementId: "G-969S8MP3YB"
-};
-
-let firebaseDB = null;
-async function initFirebase() {
-  if (typeof firebase === 'undefined') {
-    console.warn("Firebase não carregado. Usando localStorage.");
-    return false;
-  }
-  try {
-    firebase.initializeApp(firebaseConfig);
-    firebaseDB = firebase.firestore();
-    await firebaseDB.enablePersistence().catch(err => {
-      if (err.code !== 'failed-precondition') console.warn("Offline persistence não suportado:", err);
-    });
-    console.log("Firebase Firestore conectado!");
-    return true;
-  } catch (e) {
-    console.error("Erro ao inicializar Firebase:", e);
-    return false;
-  }
-}
-
 
 /* ---------- Backends ---------- */
 const LocalBackend = {
@@ -4569,7 +4475,97 @@ function exportCusto() {
 function exportRelatorio(marcaId) {
   const m = getMarca(marcaId); let css = "";
   for (const sh of document.styleSheets) { try { for (const r of sh.cssRules) if (r.selectorText && r.selectorText.startsWith(".report")) css += r.cssText + "\n"; } catch (_) { } }
-  baixar(`relatorio-${slug(m.nome)}-${UI.mes}.html`, `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Relatório ${esc(m.nome)} ${labelMes(UI.mes)}</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Nunito+Sans:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"><style>body{font-family:"Nunito Sans",system-ui,sans-serif;margin:0;padding:32px;background:#EDE7DC;color:#141414}*{box-sizing:border-box}${css}.report{border:0;margin:0 auto}@media print{body{padding:0}}</style></head><body>${relatorioHTML(m, UI.mes)}</body></html>`, "text/html");
+  baixar(`relatorio-${slug(m.nome)}-${UI.mes}.html`, `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Relatório ${esc(m.nome)} ${labelMes(UI.mes)}</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Nunito+Sans:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"><style>body{font-family:"Nunito Sans",system-ui,sans-serif;margin:0;padding:32px;background:#EDE7DC;color:#141414}*{box-sizing:border-box}${css}.report{border:0;margin:0 auto}@media print{body{padding:0}}</style></head><body>${relatorioHTML(m, UI.mes)}<!-- ========== FIREBASE FIRESTORE ========== -->
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore-compat.js"></script>
+<script>
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDm9KvhkD_z8iYEKqBv9zjZ7ifr-C6ohqc",
+    authDomain: "central-operacoes-be8ae.firebaseapp.com",
+    projectId: "central-operacoes-be8ae",
+    storageBucket: "central-operacoes-be8ae.firebasestorage.app",
+    messagingSenderId: "212499974080",
+    appId: "1:212499974080:web:701619935a21a6dc8d2a25",
+    measurementId: "G-969S8MP3YB"
+  };
+
+  // Inicializar Firebase
+  let firebaseDB = null;
+  function initFirebase() {
+    try {
+      const app = firebase.initializeApp(firebaseConfig);
+      firebaseDB = firebase.firestore(app);
+      
+      // Conectar ao Repo
+      if (typeof Repo !== "undefined") {
+        Repo.be = FirestoreBackend(firebaseDB);
+      }
+      
+      console.log("✅ Firebase Firestore conectado com sucesso!");
+      return true;
+    } catch (e) {
+      console.error("❌ Erro ao inicializar Firebase:", e);
+      return false;
+    }
+  }
+
+  // Backend do Firebase
+  function FirestoreBackend(db) {
+    return {
+      async get(p) {
+        try {
+          const docSnap = await db.collection("dados").doc(p).get();
+          return docSnap.exists ? docSnap.data() : null;
+        } catch (e) {
+          console.error("Erro ao ler:", e);
+          return null;
+        }
+      },
+
+      async set(p, d) {
+        try {
+          await db.collection("dados").doc(p).set(d, { merge: true });
+          console.log("✅ Salvo:", p);
+        } catch (e) {
+          console.error("Erro ao salvar:", e);
+          throw e;
+        }
+      },
+
+      async del(p) {
+        try {
+          await db.collection("dados").doc(p).delete();
+        } catch (e) {
+          console.error("Erro ao deletar:", e);
+        }
+      },
+
+      async list(col) {
+        try {
+          const querySnap = await db.collection("dados").where("__col", "==", col).get();
+          return querySnap.docs.map(d => ({
+            id: d.id.replace(col + "/", ""),
+            data: d.data()
+          }));
+        } catch (e) {
+          console.error("Erro ao listar:", e);
+          return [];
+        }
+      }
+    };
+  }
+
+  // Inicializar quando documento carregar
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initFirebase);
+  } else {
+    initFirebase();
+  }
+</script>
+<!-- ========== FIM FIREBASE ========== -->
+
+</body></html>`, "text/html");
 }
 function resizeImage(file, max = 128) {
   return new Promise((res, rej) => { const r = new FileReader(); r.onerror = rej; r.onload = () => { const img = new Image(); img.onerror = rej; img.onload = () => { const s = Math.min(1, max / Math.max(img.width, img.height)); const cv = document.createElement("canvas"); cv.width = Math.round(img.width * s); cv.height = Math.round(img.height * s); cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height); res(cv.toDataURL("image/png")); }; img.src = r.result; }; r.readAsDataURL(file); });
@@ -4994,19 +4990,8 @@ async function entrarColaborador(id) {
   await exigirSenha(u, async () => { SESSION.userId = u.id; await carregarDados(); entrar(); });
 }
 async function carregarLocal() {
-  const firebaseOk = await initFirebase();
-  if (firebaseOk && firebaseDB) {
-    Repo.be = FirestoreBackend(firebaseDB);
-    console.log("Usando Firebase Firestore para dados");
-  } else {
-    Repo.be = LocalBackend;
-    console.log("Usando localStorage para dados");
-  }
-  SESSION.mode = "local";
-  if (!(await Repo.be.get("pub/dir"))) { S = estadoInicial(); await Repo.be.set("pub/dir", S.dir); await Repo.be.set("adm/core", S.core); await Repo.be.set("adm/equipe", S.equipe); }
-  await carregarDados();
-}
-
+  Repo.be = LocalBackend; SESSION.mode = "local";
+  if (!(await LocalBackend.get("pub/dir"))) { S = estadoInicial(); await LocalBackend.set("pub/dir", S.dir); await LocalBackend.set("adm/core", S.core); await LocalBackend.set("adm/equipe", S.equipe); }
   await carregarDados();
 }
 
@@ -5274,5 +5259,95 @@ setInterval(() => { if (SESSION.userId && Date.now() - ULTIMA_ATIV > 30 * 60000)
   setInterval(() => { const t = isoOf(new Date()); if (t !== TODAY && SESSION.userId && !$("#mform")) render(); else if (SESSION.userId && UI.view === "homeoffice" && !$("#mform")) render(); }, 60000);
 })();
 </script>
+<!-- ========== FIREBASE FIRESTORE ========== -->
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore-compat.js"></script>
+<script>
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDm9KvhkD_z8iYEKqBv9zjZ7ifr-C6ohqc",
+    authDomain: "central-operacoes-be8ae.firebaseapp.com",
+    projectId: "central-operacoes-be8ae",
+    storageBucket: "central-operacoes-be8ae.firebasestorage.app",
+    messagingSenderId: "212499974080",
+    appId: "1:212499974080:web:701619935a21a6dc8d2a25",
+    measurementId: "G-969S8MP3YB"
+  };
+
+  // Inicializar Firebase
+  let firebaseDB = null;
+  function initFirebase() {
+    try {
+      const app = firebase.initializeApp(firebaseConfig);
+      firebaseDB = firebase.firestore(app);
+      
+      // Conectar ao Repo
+      if (typeof Repo !== "undefined") {
+        Repo.be = FirestoreBackend(firebaseDB);
+      }
+      
+      console.log("✅ Firebase Firestore conectado com sucesso!");
+      return true;
+    } catch (e) {
+      console.error("❌ Erro ao inicializar Firebase:", e);
+      return false;
+    }
+  }
+
+  // Backend do Firebase
+  function FirestoreBackend(db) {
+    return {
+      async get(p) {
+        try {
+          const docSnap = await db.collection("dados").doc(p).get();
+          return docSnap.exists ? docSnap.data() : null;
+        } catch (e) {
+          console.error("Erro ao ler:", e);
+          return null;
+        }
+      },
+
+      async set(p, d) {
+        try {
+          await db.collection("dados").doc(p).set(d, { merge: true });
+          console.log("✅ Salvo:", p);
+        } catch (e) {
+          console.error("Erro ao salvar:", e);
+          throw e;
+        }
+      },
+
+      async del(p) {
+        try {
+          await db.collection("dados").doc(p).delete();
+        } catch (e) {
+          console.error("Erro ao deletar:", e);
+        }
+      },
+
+      async list(col) {
+        try {
+          const querySnap = await db.collection("dados").where("__col", "==", col).get();
+          return querySnap.docs.map(d => ({
+            id: d.id.replace(col + "/", ""),
+            data: d.data()
+          }));
+        } catch (e) {
+          console.error("Erro ao listar:", e);
+          return [];
+        }
+      }
+    };
+  }
+
+  // Inicializar quando documento carregar
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initFirebase);
+  } else {
+    initFirebase();
+  }
+</script>
+<!-- ========== FIM FIREBASE ========== -->
+
 </body>
 </html>
