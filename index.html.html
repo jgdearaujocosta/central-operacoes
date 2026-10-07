@@ -1,108 +1,3 @@
-
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}/* Reembolsos FlashZ e Boltz: mesmo visual do painel de referência */
-.rbx{--bg:#f4f4f2;--surface:#ffffff;--ink:#111211;--muted:#64665f;--line:#e0e1dc;--lime:#aee83f;--lime-ink:#3d5a0a;--lime-soft:#eef8d9;--lilac:#dcc8f0;--lilac-ink:#5b3f80;--lilac-soft:#f1e9f9;--ok:#3fae5a;--totbg:#111211;--totfg:#f4f4f2;
-  --flash:"Chakra Petch","Arial Narrow",system-ui,sans-serif;--boltf:"Archivo",system-ui,sans-serif;--body:"Figtree",system-ui,-apple-system,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
-  background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;border-radius:6px;border:1px solid var(--line)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rbx{--bg:#0f100f;--surface:#181917;--ink:#eef0ea;--muted:#9ca196;--line:#2c2e2a;--lime-ink:#c8f27a;--lime-soft:#24301a;--lilac-ink:#dcc8f0;--lilac-soft:#2a2233;--totbg:#1f211d;--totfg:#eef0ea}}
-:root[data-theme="dark"] .rbx{--bg:#0f100f;--surface:#181917;--ink:#eef0ea;--muted:#9ca196;--line:#2c2e2a;--lime-ink:#c8f27a;--lime-soft:#24301a;--lilac-ink:#dcc8f0;--lilac-soft:#2a2233;--totbg:#1f211d;--totfg:#eef0ea}
-.rbx *{box-sizing:border-box}
-.rbx .wrap{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:28px 40px;display:grid;gap:22px}
-.rbx .rxtop{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px}
-.rbx .rxtop h1{font-family:var(--body);font-weight:600;font-size:clamp(22px,3.6vw,30px);line-height:1.15;margin:0;letter-spacing:0;text-wrap:balance;color:var(--ink)}
-.rbx .rxsub{color:var(--muted);margin:4px 0 0;font-size:14px}
-.rbx .grand{display:flex;flex-wrap:wrap;gap:8px}
-.rbx .gbox{border-radius:8px;padding:8px 12px;display:grid;gap:2px}
-.rbx .gbox .lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
-.rbx .gbox strong{font-weight:700;font-size:17px;line-height:1.1;font-variant-numeric:tabular-nums;white-space:nowrap}
-.rbx .gbox.f{background:var(--lime);color:#12140f}.rbx .gbox.f .lbl,.rbx .gbox.f strong{font-family:var(--flash)}
-.rbx .gbox.b{background:var(--lilac);color:#0d0d0d}.rbx .gbox.b .lbl,.rbx .gbox.b strong{font-family:var(--boltf);font-stretch:125%}.rbx .gbox.b strong{font-weight:900}
-.rbx .gbox.t{background:#0d0d0d;color:#f4f4f2;border:1px solid var(--line)}.rbx .gbox.t strong{font-family:var(--mono);font-weight:500}
-.rbx .gbox.t .lbl i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:3px}.rbx .gbox.t .lbl i:first-child{background:var(--lime)}.rbx .gbox.t .lbl i:nth-child(2){background:var(--lilac);margin-right:8px}
-.rbx .folders{display:flex;gap:10px;overflow-x:auto;padding-bottom:2px}
-.rbx .folder{font:inherit;text-align:left;cursor:pointer;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:4px 10px 10px 10px;padding:10px 14px;display:grid;gap:2px;min-width:170px;position:relative;margin-top:8px}
-.rbx .folder::before{content:"";position:absolute;left:-1px;top:-8px;width:58px;height:9px;background:inherit;border:1px solid var(--line);border-bottom:0;border-radius:6px 8px 0 0}
-.rbx .folder .m{font-weight:600;font-size:15px}.rbx .folder .v{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}.rbx .folder .v b{font-weight:400;color:var(--muted)}
-.rbx .folder[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}.rbx .folder[aria-pressed="true"]::before{border-color:var(--ink)}
-.rbx .folder[aria-pressed="true"] .v,.rbx .folder[aria-pressed="true"] .v b{color:var(--bg);opacity:.8}
-.rbx .rxtabs{display:flex;gap:6px;border-bottom:1px solid var(--line);overflow-x:auto}
-.rbx .rxtab{font:inherit;font-size:15px;font-weight:600;background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);padding:10px 16px 9px;cursor:pointer;display:flex;align-items:center;gap:8px;white-space:nowrap}
-.rbx .rxtab .amt{font-family:var(--mono);font-weight:400;font-size:13px}
-.rbx .rxtab[aria-selected="true"]{color:var(--ink)}.rbx .rxtab.flash[aria-selected="true"]{border-color:var(--lime)}.rbx .rxtab.bolt[aria-selected="true"]{border-color:var(--lilac)}
-.rbx .rxdot{width:9px;height:9px;border-radius:2px}.rbx .flash .rxdot{background:var(--lime)}.rbx .bolt .rxdot{background:var(--lilac)}
-.rbx .panel{display:grid;gap:26px}
-.rbx .panel.flash{--acc:var(--lime);--acc-ink:var(--lime-ink);--acc-soft:var(--lime-soft);--disp:var(--flash)}
-.rbx .panel.bolt{--acc:var(--lilac);--acc-ink:var(--lilac-ink);--acc-soft:var(--lilac-soft);--disp:var(--boltf)}
-.rbx .phead{display:grid;gap:4px}
-.rbx .brand{font-family:var(--disp);font-weight:700;font-size:15px;letter-spacing:.04em;text-transform:lowercase;color:var(--acc-ink);display:flex;align-items:center;gap:6px}
-.rbx .flash .brand b{background:var(--lime);color:#12140f;padding:2px 8px;border-radius:4px}
-.rbx .bolt .brand{font-weight:900;font-stretch:125%;font-size:19px;letter-spacing:-.01em;color:var(--ink)}.rbx .bolt .brand svg{height:20px;width:auto}
-.rbx .bolt .brand small{font-weight:600;font-stretch:100%;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-left:4px}
-.rbx .phead h2{font-family:var(--disp);font-weight:700;font-size:clamp(24px,4.2vw,34px);line-height:1.08;margin:6px 0 0;letter-spacing:0;text-wrap:balance;color:var(--ink)}
-.rbx .bolt .phead h2{font-weight:800;font-stretch:125%;letter-spacing:-.01em}
-.rbx .phead p{color:var(--muted);margin:0}
-.rbx .summary{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:stretch}
-.rbx .total{background:var(--totbg);color:var(--totfg);border-radius:10px;padding:18px;display:grid;gap:16px;align-content:start;position:relative;overflow:hidden}
-.rbx .total .bigbolt{position:absolute;right:-18px;bottom:-30px;height:170px;opacity:.22}
-.rbx .total .lbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.75;font-weight:600}
-.rbx .total .big{font-family:var(--disp);font-weight:700;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap;font-size:clamp(26px,4.4vw,42px)}
-.rbx .bolt .total .big{font-weight:900;font-stretch:112%}
-.rbx .total .big span:first-child{color:var(--acc)}
-.rbx .facts{display:grid;grid-template-columns:auto 1fr 1fr;gap:12px 18px;position:relative;padding-top:14px;border-top:1px solid rgba(255,255,255,.14)}
-.rbx .facts div{display:grid;gap:3px;min-width:0}.rbx .facts span{font-size:11px;letter-spacing:.07em;text-transform:uppercase;opacity:.7;white-space:nowrap}
-.rbx .facts strong{font-family:var(--mono);font-size:14px;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
-.rbx .split{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px 22px;display:grid;gap:12px;align-content:start}
-.rbx .split h3{font-family:var(--disp);font-weight:600;font-size:17px;margin:0;color:var(--ink)}.rbx .bolt .split h3{font-weight:800;font-stretch:115%}
-.rbx .bar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;font-size:14px}
-.rbx .bar .val{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
-.rbx .track{grid-column:1/-1;height:8px;background:var(--line);border-radius:4px;overflow:hidden}
-.rbx .fill{height:100%;background:var(--acc);border-radius:4px}.rbx .fill.alt{background:var(--ink)}
-.rbx .pct{color:var(--muted);font-size:12px;margin-left:6px}
-.rbx .sheet{display:grid;gap:14px}
-.rbx .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
-.rbx .chips{display:flex;flex-wrap:wrap;gap:6px}
-.rbx .rxchip,.rbx .rxbtn{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 12px;border-radius:999px;cursor:pointer;height:auto;line-height:1.4}
-.rbx .rxchip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.rbx .rxbtn{border-radius:6px;background:var(--acc);color:#12140f;border-color:var(--acc);font-weight:600}
-.rbx .tablebox{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
-.rbx table{width:100%;border-collapse:collapse;min-width:820px;font-size:14px}
-.rbx th{font-family:var(--body);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:left;font-weight:600;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap;background:none}
-.rbx td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink)}
-.rbx tbody tr:last-child td{border-bottom:0}
-.rbx td.rxnum,.rbx th.rxnum{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
-.rbx td.date{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--muted)}.rbx td.date.rxmain{color:var(--ink)}
-.rbx .rxtag{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:4px;background:var(--acc-soft);color:var(--acc-ink);white-space:nowrap}
-.rbx .frente{white-space:nowrap}
-.rbx .cat-outro{font-size:12px;border:1px solid var(--line);padding:1px 7px;border-radius:4px;color:var(--muted)}
-.rbx .stt{font-size:12px;color:var(--muted);white-space:nowrap}
-.rbx .stt::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:6px;vertical-align:1px}
-.rbx .stt.wait::before{background:#e0a419}.rbx .stt.no::before{background:#d2443a}
-.rbx tr.rec td{opacity:.6}.rbx .mot{color:#c0392b;font-size:12.5px;margin-top:2px}.rbx .obs{color:var(--muted);font-size:12.5px;margin-top:2px}
-.rbx .att{font-size:12px;color:var(--acc-ink);white-space:nowrap}
-.rbx td.acts{white-space:nowrap;text-align:right}
-.rbx .mini{font:inherit;font-size:12px;font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px;padding:3px 8px;cursor:pointer;margin-left:4px;display:inline-flex;align-items:center;vertical-align:middle}
-.rbx .mini.ok{background:var(--acc);border-color:var(--acc);color:#12140f}.rbx .mini.ic{padding:4px 6px;color:var(--muted)}.rbx .mini.ic svg{width:14px;height:14px}
-.rbx tfoot td{font-weight:600;border-top:2px solid var(--ink);border-bottom:0}
-.rbx .note{font-size:13px;color:var(--muted);margin:0}
-.rbx .rxtoast{font-size:13px;color:var(--acc-ink)}
-.rbx .empty{background:var(--surface);border:1px dashed var(--line);border-radius:10px;padding:32px 22px;display:grid;gap:6px;justify-items:start}
-.rbx .empty strong{font-family:var(--disp);font-size:18px}.rbx .empty p{margin:0;color:var(--muted);max-width:60ch}
-.rbx .rb-drop{margin:0}
-.rb-modal .modal-b{padding:0}.rb-modal .rbx{border:none;border-radius:0}
-@media (max-width:820px){.rbx .summary .facts{grid-template-columns:repeat(auto-fit,minmax(84px,1fr))}}
-@media (max-width:480px){.rbx .summary{grid-template-columns:1fr}}
-
-.rb-pick{display:flex;flex-direction:column;gap:3px;border:1.5px dashed var(--line);border-radius:6px;padding:14px;background:var(--surface-2);cursor:pointer;text-align:center;align-items:center}
-.rb-pick b{font-size:14px}.rb-pick span{font-size:12.5px;color:var(--muted)}.rb-pick.on,.rb-pick:hover{border-color:var(--accent);background:var(--accent-soft)}
-.rb-anx{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:8px;margin-bottom:8px}
-.rb-th{position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface);display:flex;flex-direction:column}
-.rb-th img{width:100%;height:84px;object-fit:cover;display:block;background:var(--surface-2)}
-.rb-th .pdf{height:84px;display:grid;place-items:center;font-family:var(--mono);font-weight:700;color:var(--red);background:var(--red-soft)}
-.rb-th a,.rb-th>span:not(.pdf){font-size:11px;padding:4px 6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink-2)}
-.rb-th button{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font-size:11px;cursor:pointer}
-.rb-th.novo{border-color:var(--accent)}
-
-.rbx .rxmes{display:flex;align-items:center;gap:8px}.rbx .rxmes b{font-size:15px;min-width:130px;text-align:center}.rbx .rxmes .mini{margin:0;font-size:15px;padding:2px 10px}
-</style></head><body>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -111,7 +6,7 @@
 <title>Central de Operação | Boltz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Chakra+Petch:wght@500;600;700&family=Figtree:wght@400;500;600&family=Archivo:wdth,wght@62..125,400;62..125,600;62..125,700;62..125,800;62..125,900&family=JetBrains+Mono:wght@400;500&family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Chakra+Petch:wght@500;600;700&family=Figtree:wght@400;500;600&family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F5F0E8; --surface:#FBF8F3; --surface-2:#F1ECE3; --ink:#141414; --ink-2:#38352F; --muted:#6B655C; --faint:#9C958A;
@@ -1044,6 +939,10 @@ tr.eu td{background:color-mix(in srgb,var(--accent) 7%,var(--surface))}
   .fz-row [data-l]::before{content:attr(data-l);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--fz-mut);font-weight:600}
   .fz-row.t .c-date{display:none}}
 </style>
+<!-- Firebase Scripts -->
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js"></script>
+
 </head>
 <body>
 <div class="app">
@@ -1173,6 +1072,96 @@ function estadoInicial() {
   };
 }
 let S = estadoInicial();
+
+/* ---------- Backends e Firebase ---------- */
+// Firebase Firestore Backend
+function FirestoreBackend(db) {
+  return {
+    async get(p) { 
+      try { 
+        const snap = await db.collection("app").doc(p).get(); 
+        return snap.exists ? clone(snap.data()) : null; 
+      } catch (e) { 
+        console.error("Firebase get error:", e); 
+        return null; 
+      } 
+    },
+    async set(p, d) { 
+      try { 
+        await db.collection("app").doc(p).set(clone(d)); 
+      } catch (e) { 
+        console.error("Firebase set error:", e); 
+      } 
+    },
+    async del(p) { 
+      try { 
+        await db.collection("app").doc(p).delete(); 
+      } catch (e) { 
+        console.error("Firebase del error:", e); 
+      } 
+    },
+    async list(col) { 
+      try { 
+        const snap = await db.collection("app").get();
+        return snap.docs
+          .filter(d => d.id.startsWith(col + "/"))
+          .map(d => ({ id: d.id.replace(col + "/", ""), data: clone(d.data()) })); 
+      } catch (e) { 
+        console.error("Firebase list error:", e); 
+        return []; 
+      } 
+    },
+    watch(col, cb, onErr, f) { 
+      try {
+        let q = db.collection("app");
+        return q.onSnapshot(
+          snap => {
+            const filtered = snap.docs
+              .filter(d => d.id.startsWith(col + "/"))
+              .map(d => ({ id: d.id.replace(col + "/", ""), data: clone(d.data()) }));
+            cb(filtered);
+          },
+          e => { console.error("Firebase watch error:", e); onErr && onErr(e); }
+        );
+      } catch (e) {
+        console.error("Firebase watch setup error:", e);
+        return () => {};
+      }
+    }
+  };
+}
+
+// Firebase Config
+const firebaseConfig = {
+  apiKey: "AIzaSyDm9KvhkD_z8iYEKqBv9zjZ7ifr-C6ohqc",
+  authDomain: "central-operacoes-be8ae.firebaseapp.com",
+  projectId: "central-operacoes-be8ae",
+  storageBucket: "central-operacoes-be8ae.firebasestorage.app",
+  messagingSenderId: "212499974080",
+  appId: "1:212499974080:web:701619935a21a6dc8d2a25",
+  measurementId: "G-969S8MP3YB"
+};
+
+let firebaseDB = null;
+async function initFirebase() {
+  if (typeof firebase === 'undefined') {
+    console.warn("Firebase não carregado. Usando localStorage.");
+    return false;
+  }
+  try {
+    firebase.initializeApp(firebaseConfig);
+    firebaseDB = firebase.firestore();
+    await firebaseDB.enablePersistence().catch(err => {
+      if (err.code !== 'failed-precondition') console.warn("Offline persistence não suportado:", err);
+    });
+    console.log("Firebase Firestore conectado!");
+    return true;
+  } catch (e) {
+    console.error("Erro ao inicializar Firebase:", e);
+    return false;
+  }
+}
+
 
 /* ---------- Backends ---------- */
 const LocalBackend = {
@@ -1625,8 +1614,7 @@ const IC = {
   lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>',
   refresh: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 0 1-14.3 4.9M4 12a8 8 0 0 1 14.3-4.9M18.5 3v4.2h-4.2M5.5 21v-4.2h4.2"/></svg>',
 };
-IC.reembolsos = IC.reembolsos || IC.money;
-const VIEWS_ADMIN = [["painel", "Dashboard"], ["workspace", "Workspace"], ["chat", "Chat"], ["reunioes", "Reuniões"], ["marcas", "Marcas"], ["demandas", "Demandas"], ["calendario", "Calendário"], ["atividades", "Atividades", "atividades"], ["homeoffice", "Home Office", "homeoffice"], ["colaboradores", "Colaboradores"], ["acessos", "Acessos"], ["aprovacoes", "Aprovações"], ["reembolsos", "Reembolsos"], ["pagamentos", "Pagamentos"], ["relatorios", "Relatórios"], ["configuracoes", "Configurações"]];
+const VIEWS_ADMIN = [["painel", "Dashboard"], ["workspace", "Workspace"], ["chat", "Chat"], ["reunioes", "Reuniões"], ["marcas", "Marcas"], ["demandas", "Demandas"], ["calendario", "Calendário"], ["atividades", "Atividades", "atividades"], ["homeoffice", "Home Office", "homeoffice"], ["colaboradores", "Colaboradores"], ["acessos", "Acessos"], ["aprovacoes", "Aprovações"], ["pagamentos", "Pagamentos"], ["relatorios", "Relatórios"], ["configuracoes", "Configurações"]];
 const VIEWS_COLAB = [["meu", "Meu Dashboard", "painel"], ["workspace", "Workspace", "workspace"], ["chat", "Chat", "chat"], ["reunioes", "Reuniões", "reunioes"], ["agenda", "Meu Calendário", "calendario"], ["homeoffice", "Home Office", "homeoffice"], ["marcas", "Marcas", "marcas"], ["demandas", "Minhas Demandas", "demandas"], ["trabalhos", "Meus Trabalhos", "trabalhos"], ["meufin", "Meu Financeiro", "pagamentos"], ["reembolsos", "Reembolsos", "money"], ["historico", "Meu Histórico", "historico"]];
 const MOBILE_ADMIN = ["painel", "demandas", "aprovacoes", "pagamentos"];
 const MOBILE_COLAB = ["meu", "chat", "workspace", "reunioes"];
@@ -1708,7 +1696,6 @@ function renderShell() {
   // faixa de meses
   const win = []; for (let i = -4; i <= 3; i++) win.push(addMonths(UI.mes, i));
   const resumoMes = m => {
-    if (UI.view === "reembolsos") { const pid = isAdmin() && !SESSION.viewAs ? RB.pessoa : me()?.id; if (pid && rbPode(pid)) { const t = rbSoma(rbDoMes(pid, m)); return { bar: 0, txt: t ? fzBRL(t) : "sem despesas", none: !t }; } }
     if (UI.view === "agenda" || UI.view === "atividades" || (UI.view === "relatorios" && UI.relTab === "atividades")) {
       const A = S.ativ[m]; if (!A?.ok) return { none: true, txt: m === UI.mes ? "carregando" : "—" };
       const n = A.itens.filter(a => UI.view === "agenda" || !isAdmin() ? a.userId === me().id : (!UI.A.user || a.userId === UI.A.user)).length;
@@ -2015,7 +2002,7 @@ function trabsCalendario(mes, pessoal) {
     && (!F.marca || (F.marca === INTERNO ? !t.marcaId : t.marcaId === F.marca)));
 }
 const marcaTrab = t => t.marcaId ? nomeMarca(t.marcaId) : "Sem marca";
-const tituloTrab = t => t.descricao || nomeTipo(t.tipoId);
+const tituloTrab = t => nomeTipo(t.tipoId);
 function resumoCal(lista, trabs) {
   const r = resumoAtiv(lista);
   r.trabN = trabs.length; r.trabV = soma(trabs, t => t.valor);
@@ -2419,7 +2406,7 @@ function relatorioHTML(m, mes) {
     </tbody></table>
     ${av.length ? `<h2>Demandas extras (além do contrato)</h2><table><thead><tr><th>Demanda</th><th>Data</th><th class="r">Status</th></tr></thead><tbody>${av.map(it => `<tr><td>${esc(it.titulo)}</td><td>${fmtDataL(it.data)}</td><td class="r">${STATUS[stEf(it)].label}</td></tr>`).join("")}</tbody></table>` : ""}
     ${feitos.length ? `<h2>Detalhamento do que foi entregue</h2><table><thead><tr><th>Item</th><th>Concluído em</th><th class="r">Link</th></tr></thead><tbody>${feitos.map(it => `<tr><td>${esc(it.titulo)}</td><td>${fmtDataL(it.concluidoEm || it.data)}</td><td class="r">${it.link ? `<a href="${esc(it.link)}" target="_blank" rel="noopener">abrir</a>` : "—"}</td></tr>`).join("")}</tbody></table>` : ""}
-    ${(() => { const ts = trabalhosTodos().filter(t => t.marcaId === m.id && t.mes === mes && (t.status === "aprovado" || t.status === "pago")); return ts.length ? `<h2>Custos de equipe vinculados à marca</h2><table><thead><tr><th>Trabalho</th><th>Colaborador</th><th class="r">Valor</th></tr></thead><tbody>${ts.map(t => `<tr><td>${esc(t.descricao || nomeTipo(t.tipoId))}</td><td>${esc(nomeResp(t.userId))}</td><td class="r">${fmtBRL(t.valor)}</td></tr>`).join("")}<tr><td><b>Total</b></td><td></td><td class="r"><b>${fmtBRL(soma(ts, t => t.valor))}</b></td></tr></tbody></table>` : ""; })()}
+    ${(() => { const ts = trabalhosTodos().filter(t => t.marcaId === m.id && t.mes === mes && (t.status === "aprovado" || t.status === "pago")); return ts.length ? `<h2>Custos de equipe vinculados à marca</h2><table><thead><tr><th>Trabalho</th><th>Colaborador</th><th class="r">Valor</th></tr></thead><tbody>${ts.map(t => `<tr><td>${esc(nomeTipo(t.tipoId))}</td><td>${esc(nomeResp(t.userId))}</td><td class="r">${fmtBRL(t.valor)}</td></tr>`).join("")}<tr><td><b>Total</b></td><td></td><td class="r"><b>${fmtBRL(soma(ts, t => t.valor))}</b></td></tr></tbody></table>` : ""; })()}
     <div class="foot"><div class="bz"><svg viewBox="0 0 16 26" aria-hidden="true"><path d="M11.5 0 2 14.2h5.6L3.4 26 14 10.6H8.3L11.5 0Z" fill="currentColor"/></svg><span>boltz</span></div><span>Gerado em ${fmtDataL(TODAY)}</span></div>
   </div>`;
 }
@@ -2528,7 +2515,7 @@ function tabelaTrab(lista, { user = false, acoes = false } = {}) {
   const tot = soma(lista.filter(t => t.status === "aprovado" || t.status === "pago"), t => t.valor);
   return `<div class="tw"><table class="t"><thead><tr><th>Data</th><th>Trabalho</th>${user ? "<th>Colaborador</th>" : ""}<th>Marca / projeto</th><th>Tipo</th><th class="num">Valor</th><th>Status</th><th></th></tr></thead><tbody>
     ${lista.map(t => `<tr class="click" data-act="open-trab" data-id="${t.id}"><td>${fmtDataL(t.data)}${t.mes !== ymOf(t.data) ? `<div class="muted small">competência ${labelMesC(t.mes)}</div>` : ""}</td>
-      <td><b>${esc(t.descricao || nomeTipo(t.tipoId))}</b>${t.demandaId ? '<div class="muted small">a partir de uma demanda</div>' : ""}${t.status === "recusado" && t.motivo ? `<div class="small" style="color:var(--red)">${esc(t.motivo)}</div>` : ""}</td>
+      <td><b>${esc(nomeTipo(t.tipoId))}</b>${t.demandaId ? '<div class="muted small">a partir de uma demanda</div>' : ""}${t.status === "recusado" && t.motivo ? `<div class="small" style="color:var(--red)">${esc(t.motivo)}</div>` : ""}</td>
       ${user ? `<td>${esc(nomeResp(t.userId))}</td>` : ""}<td>${t.marcaId ? esc(nomeMarca(t.marcaId)) : t.marcaNova ? `${esc(t.marcaNova)}<span class="mk-nova-tag">nova</span>` : "—"}${t.projeto ? `<div class="muted small">${esc(t.projeto)}</div>` : ""}</td>
       <td>${esc(nomeTipo(t.tipoId))}<div class="muted small">${GRUPOS[t.grupo] || ""}</div></td><td class="num">${t.status === "pendente" && !isAdmin() ? "—" : fmtBRL(t.valor)}</td><td>${trabBadge(t.status, true)}</td>
       <td class="num"><div class="row-acts">${acoes && isAdmin() && t.status === "pendente" ? `<button class="btn sm" data-act="aprovar" data-id="${t.id}">Aprovar</button>` : ""}${btnExcluirTrab(t)}</div></td></tr>`).join("")}
@@ -2573,7 +2560,7 @@ function viewMeu() {
       <div class="card"><div class="card-h"><h2>Minhas demandas <span class="sub">${doMes.concluido}/${doMes.total} no mês</span></h2><button class="btn sm" data-act="nav" data-view="demandas">Ver todas</button></div>
         ${hoje.length || atras.length ? `${hoje.map(it => itemRow(it)).join("")}${atras.length ? `<div class="group-h"><h4 style="color:var(--red)">Atrasadas</h4><span class="gcount">${atras.length}</span></div>${atras.slice(0, 5).map(it => itemRow(it)).join("")}` : ""}` : emptyState("Nada para hoje", "Nenhuma demanda sua vence hoje e nada está atrasado.")}</div>
       <div class="card"><div class="card-h"><h2>Últimos trabalhos</h2><button class="btn sm" data-act="nav" data-view="trabalhos">Ver todos</button></div>
-        ${ult.length ? ult.map(t => `<button class="row rowbtn" data-act="open-trab" data-id="${t.id}"><span class="r-t"><b>${esc(t.descricao || nomeTipo(t.tipoId))}</b><span>${fmtDataL(t.data)}, ${esc(nomeTipo(t.tipoId))}${t.marcaId ? `, ${esc(nomeMarca(t.marcaId))}` : ""}</span></span>${t.status === "pendente" ? "" : `<b class="small">${fmtBRL(t.valor)}</b>`}${trabBadge(t.status, true)}</button>`).join("") : emptyState("Nenhum trabalho registrado", "Fez um evento, diária ou produção? Registre para entrar no seu financeiro após aprovação.")}</div>
+        ${ult.length ? ult.map(t => `<button class="row rowbtn" data-act="open-trab" data-id="${t.id}"><span class="r-t"><b>${esc(nomeTipo(t.tipoId))}</b><span>${fmtDataL(t.data)}${t.marcaId ? `, ${esc(nomeMarca(t.marcaId))}` : ""}${t.projeto ? `, ${esc(t.projeto)}` : ""}</span></span>${t.status === "pendente" ? "" : `<b class="small">${fmtBRL(t.valor)}</b>`}${trabBadge(t.status, true)}</button>`).join("") : emptyState("Nenhum trabalho registrado", "Fez um evento, diária ou produção? Registre para entrar no seu financeiro após aprovação.")}</div>
     </div>`;
 }
 function cardsSituacaoVertical(uidU, mes) {
@@ -3559,15 +3546,13 @@ function cardFlashzAdmin(u) {
 const RB = { mes: null, emp: "flashz" };
 const RB_EMP = { flashz: { nome: "FlashZ", cor: "fz" }, boltz: { nome: "Boltz", cor: "bz" } };
 const RB_CATS = ["Transporte", "Alimentação", "Combustível", "Estacionamento", "Hospedagem", "Material", "Outros"];
-const RB_ST = { pendente: "Aguardando aprovação", aprovado: "Aprovado", pago: "Aprovado e pago", recusado: "Recusado" };
+const RB_ST = { pendente: "Aguardando aprovação", aprovado: "Aprovado", recusado: "Recusado" };
 const rbPode = pid => fzPode(pid);
 const rbLista = pid => fzDados(pid).reembolsos ||= [];
 const rbUrl = u => /^https?:\/\//i.test(String(u || "")) ? String(u) : "";
 const rbConta = r => r.st !== "recusado";
 const rbSoma = arr => soma(arr.filter(rbConta), r => r.v);
-const rbMesDe = r => r.mesRef || (r.d ? ymOf(r.d) : "");
-const rbDoMes = (pid, m) => rbLista(pid).filter(r => r.d && rbMesDe(r) === m);
-const RB_LABELS = { "Maracanã": "Maracanã / Tá no Maraca", "São Januário": "São Januário · projeto social e fotografia" };
+const rbDoMes = (pid, m) => rbLista(pid).filter(r => r.d && ymOf(r.d) === m);
 function reembolsoEm(pid, mes) { if (!rbPode(pid)) return 0; return soma(rbDoMes(pid, mes).filter(r => r.st === "aprovado"), r => r.v); }
 const rbPendentes = () => FZ.usuarios.filter(p => getUser(p)).flatMap(p => rbLista(p).filter(r => r.st === "pendente").map(r => ({ ...r, pid: p })));
 /** grava só os reembolsos, partindo do documento atual (não apaga o que outra pessoa salvou) */
@@ -3580,81 +3565,45 @@ async function rbGravar(pid, mudar) {
   Object.assign(loc, { jogos, reembolsos: lista, seed: false });
   return true;
 }
-function rbMeses(pid) { const s = new Set([CUR]); rbLista(pid).forEach(r => r.d && s.add(rbMesDe(r))); return [...s].sort(); }
-function rbDashHTML(pid, emModal = false) {
+function rbMeses(pid) { const s = new Set([CUR, RB.mes || CUR]); rbLista(pid).forEach(r => r.d && s.add(ymOf(r.d))); return [...s].sort(); }
+function rbDashHTML(pid) {
   const admin = isAdmin() && !SESSION.viewAs; const ro = !!SESSION.viewAs;
-  if (!emModal) RB.mes = UI.mes; else if (!RB.mes) RB.mes = UI.mes;
-  const meses = [...new Set([...rbMeses(pid), RB.mes])].sort();
-  const mes = RB.mes; const emp = RB_EMP[RB.emp] ? RB.emp : "flashz";
-  const doMesE = (m, k) => rbDoMes(pid, m).filter(r => (r.emp || "flashz") === k);
-  const totE = (m, k) => rbSoma(doMesE(m, k));
-  const tf = totE(mes, "flashz"), tb = totE(mes, "boltz");
-  const nomeMes = m => labelMes(m).toLowerCase(); const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
-  const brlx = v => "R$ " + (+v || 0).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const numx = v => (+v || 0).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const BOLT = '<svg viewBox="0 0 40 80" aria-hidden="true"><path fill="currentColor" d="M40 0 13 35h27L0 80l13-38H0z"/></svg>';
-  const HEAD = { flashz: `<div class="brand"><b>flashz</b>reembolsos</div>`, boltz: `<div class="brand">${BOLT}boltz<small>reembolsos</small></div>` };
-  const ST = { aprovado: ["ok", "Aprovado"], pago: ["ok", "Aprovado e pago"], pendente: ["wait", "Aguardando aprovação"], recusado: ["no", "Recusado"] };
-  const painel = k => {
-    const empresa = RB_EMP[k].nome; const D = doMesE(mes, k).sort((a, b) => String(a.d).localeCompare(String(b.d)) || String(a.criadoEm).localeCompare(String(b.criadoEm)));
-    const conta = D.filter(rbConta); const total = rbSoma(D);
-    const nPago = D.filter(r => r.st === "pago").length, nPend = D.filter(r => r.st === "pendente").length;
-    const resumo = !D.length ? "Nenhuma despesa lançada ainda" : `${D.length} ${D.length > 1 ? "solicitações" : "solicitação"}, ${nPago === D.length ? "todas aprovadas e pagas" : [nPago && `${nPago} ${nPago > 1 ? "pagas" : "paga"}`, D.filter(r => r.st === "aprovado").length && `${D.filter(r => r.st === "aprovado").length} ${D.filter(r => r.st === "aprovado").length > 1 ? "aprovadas" : "aprovada"}`, nPend && `${nPend} aguardando aprovação`, D.filter(r => r.st === "recusado").length && `${D.filter(r => r.st === "recusado").length} ${D.filter(r => r.st === "recusado").length > 1 ? "recusadas" : "recusada"}`].filter(Boolean).join(", ")}`;
-    const titulo = `<div class="phead">${HEAD[k]}<h2>Despesas ${empresa} · ${nomeMes(mes)}</h2><p>${resumo}</p></div>`;
-    const novo = ro ? "" : `<button class="rxbtn" type="button" data-act="rb-nova" data-uid="${pid}">+ Adicionar despesa</button>`;
-    if (!D.length) return titulo + `${rbDropHTML(pid)}<div class="empty"><strong>Pasta de ${nomeMes(mes)} aberta</strong><p>As despesas da ${empresa} desse mês aparecem aqui assim que forem lançadas e adicionadas ao painel.</p>${novo ? `<div style="margin-top:8px">${novo}</div>` : ""}</div>`;
-    const frentes = [...new Set(D.map(r => r.frente || "Sem frente"))];
-    const filtro = frentes.includes(RB.frente?.[k]) ? RB.frente[k] : "Todas";
-    const vis = filtro === "Todas" ? D : D.filter(r => (r.frente || "Sem frente") === filtro);
-    const somaT = arr => rbSoma(arr);
-    const bars = frentes.map(f => { const rs = conta.filter(r => (r.frente || "Sem frente") === f); return { f, v: somaT(rs), n: rs.length, outro: rs.length && rs.every(r => r.cat !== "Transporte") }; }).sort((a, b) => b.v - a.v)
-      .map(({ f, v, n, outro }) => { const p = total ? v / total * 100 : 0; return `<div class="bar"><span>${esc(RB_LABELS[f] || f)} <span class="pct">${n} ${n !== 1 ? "despesas" : "despesa"}</span></span><span class="val">${brlx(v)}<span class="pct">${p.toFixed(0)}%</span></span><div class="track"><div class="fill${outro && k === "boltz" ? " alt" : ""}" style="width:${Math.max(p, 1.5)}%"></div></div></div>`; }).join("");
-    const acoes = r => {
-      if (ro) return "";
-      const trava = (r.st === "aprovado" || r.st === "pago") && !!getFech(pid, rbMesDe(r)); const a = [];
-      if (admin && !trava) {
-        if (r.st === "pendente" || r.st === "recusado") a.push(`<button class="mini ok" data-act="rb-aprovar" data-uid="${pid}" data-id="${r.id}" title="Aprovar">✓</button>`);
-        if (r.st === "aprovado") a.push(`<button class="mini" data-act="rb-pago" data-uid="${pid}" data-id="${r.id}" title="Marcar como pago">Pago</button>`);
-        if (r.st !== "recusado" && r.st !== "pago") a.push(`<button class="mini" data-act="rb-recusar" data-uid="${pid}" data-id="${r.id}" title="Recusar">✕</button>`);
-      }
-      if (!trava && (admin || (r.st !== "aprovado" && r.st !== "pago"))) a.push(`<button class="mini ic" data-act="rb-editar" data-uid="${pid}" data-id="${r.id}" title="Editar" aria-label="Editar">${IC.edit}</button><button class="mini ic" data-act="rb-del" data-uid="${pid}" data-id="${r.id}" title="Excluir" aria-label="Excluir">${IC.trash}</button>`);
-      return a.join("");
-    };
-    const temAcoes = !ro && vis.some(r => acoes(r));
-    const comp = r => { const a = rbAnexos(r); const ls = a.map((x, i) => `<a class="att" href="${esc(rbUrl(x.url))}" target="_blank" rel="noopener">📎 ${a.length > 1 ? `print ${i + 1}` : "print"}</a>`); if (rbUrl(r.link)) ls.push(`<a class="att" href="${esc(rbUrl(r.link))}" target="_blank" rel="noopener">📎 link</a>`); return ls.join(" "); };
-    const env = r => fmtDataL(r.env || String(r.criadoEm || "").slice(0, 10) || r.d);
-    const linhas = vis.map(r => `<tr class="${r.st === "recusado" ? "rec" : ""}">
-      <td class="date rxmain">${fmtDataL(r.d)}</td><td>${esc(r.desc)}${comp(r) ? ` ${comp(r)}` : ""}${r.obs ? `<div class="obs">${esc(r.obs)}</div>` : ""}${r.st === "recusado" && r.motivo ? `<div class="mot">Motivo: ${esc(r.motivo)}</div>` : ""}${r.mesRef && r.mesRef !== ymOf(r.d) ? `<div class="obs">conta em ${nomeMes(r.mesRef)}</div>` : ""}</td>
-      <td class="frente">${esc(r.frente || "—")}</td><td>${r.cat === "Transporte" ? "Transporte" : `<span class="cat-outro">${esc(r.cat === "Outros" || !r.cat ? "Outro" : r.cat)}</span>`}</td>
-      <td class="rxnum">${brlx(r.v)}</td><td class="date">${env(r)}</td><td><span class="stt ${ST[r.st]?.[0] || "wait"}">${ST[r.st]?.[1] || r.st}</span></td><td><span class="rxtag">${empresa}</span></td>${temAcoes ? `<td class="acts">${acoes(r)}</td>` : ""}</tr>`).join("");
-    return titulo + `
-    ${rbDropHTML(pid)}
-    <div class="summary">
-      <div class="total">${k === "boltz" ? '<svg class="bigbolt" viewBox="0 0 40 80" aria-hidden="true"><path fill="#dcc8f0" d="M40 0 13 35h27L0 80l13-38H0z"/></svg>' : ""}
-        <div class="lbl">Total ${empresa} no mês</div>
-        <div class="big"><span>R$</span> <span>${numx(total)}</span></div>
-        <div class="facts"><div><span>Despesas</span><strong>${conta.length}</strong></div><div><span>Transporte</span><strong>${brlx(somaT(conta.filter(r => r.cat === "Transporte")))}</strong></div><div><span>${k === "flashz" ? "Materiais" : "Outros"}</span><strong>${brlx(somaT(conta.filter(r => r.cat !== "Transporte")))}</strong></div></div>
-      </div>
-      <div class="split"><h3>Por frente</h3><div class="bars" style="display:grid;gap:12px">${bars}</div></div>
-    </div>
-    <div class="sheet">
-      <div class="toolbar"><div class="chips" role="group" aria-label="Filtrar por frente">${frentes.length > 1 ? ["Todas", ...frentes].map(f => `<button class="rxchip" type="button" data-act="rb-frente" data-uid="${pid}" data-emp="${k}" data-f="${esc(f)}" aria-pressed="${f === filtro}">${esc(f)}</button>`).join("") : ""}</div>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="rxtoast" aria-live="polite" data-rb-toast="${k}"></span>${novo}<button class="rxbtn" type="button" data-act="rb-copiar" data-uid="${pid}" data-emp="${k}">Copiar para planilha</button></div></div>
-      <div class="tablebox"><table>
-        <thead><tr><th>Data despesa</th><th>Descrição</th><th>Frente</th><th>Categoria</th><th class="rxnum">Valor</th><th>Enviado em</th><th>Status</th><th>Empresa</th>${temAcoes ? "<th></th>" : ""}</tr></thead>
-        <tbody>${linhas}</tbody>
-        <tfoot><tr><td colspan="4">${filtro === "Todas" ? "Total" : `Total · ${esc(filtro)}`}</td><td class="rxnum">${brlx(rbSoma(vis))}</td><td colspan="${temAcoes ? 4 : 3}"></td></tr></tfoot>
-      </table></div>
-      <p class="note">"Copiar para planilha" copia as linhas filtradas com cabeçalho. É só colar direto no Google Sheets ou Excel.${admin ? ` Aprovadas entram no total a receber de ${esc(nomeResp(pid).split(" ")[0])} no mês; "Pago" é para o que já foi reembolsado por fora (Caju) e não soma de novo.` : ""}</p>
-    </div>`;
+  const mes = RB.mes || CUR; const emp = RB_EMP[RB.emp] ? RB.emp : "flashz"; const E = RB_EMP[emp];
+  const doMes = rbDoMes(pid, mes); const porEmp = k => doMes.filter(r => (r.emp || "flashz") === k);
+  const tot = { flashz: rbSoma(porEmp("flashz")), boltz: rbSoma(porEmp("boltz")) };
+  const lista = porEmp(emp).sort((a, b) => String(a.d).localeCompare(String(b.d)) || String(a.criadoEm).localeCompare(String(b.criadoEm)));
+  const aprov = soma(doMes.filter(r => r.st === "aprovado"), r => r.v), pend = soma(doMes.filter(r => r.st === "pendente"), r => r.v);
+  const mesMin = labelMes(mes).toLowerCase(); const nome = nomeResp(pid);
+  const linha = r => {
+    const trava = r.st === "aprovado" && !!getFech(pid, ymOf(r.d));
+    const acts = [];
+    if (admin && !trava) {
+      if (r.st !== "aprovado") acts.push(`<button class="btn sm primary" data-act="rb-aprovar" data-uid="${pid}" data-id="${r.id}">${IC.check}Aprovar</button>`);
+      if (r.st !== "recusado") acts.push(`<button class="btn sm" data-act="rb-recusar" data-uid="${pid}" data-id="${r.id}">Recusar</button>`);
+    }
+    if (!ro && !trava && (admin || r.st !== "aprovado")) acts.push(`<button class="icon-btn" data-act="rb-editar" data-uid="${pid}" data-id="${r.id}" title="Editar" aria-label="Editar despesa">${IC.edit}</button><button class="icon-btn del" data-act="rb-del" data-uid="${pid}" data-id="${r.id}" title="Excluir" aria-label="Excluir despesa">${IC.trash}</button>`);
+    if (trava) acts.push(`<span class="small muted" title="Mês fechado">${IC.lock}</span>`);
+    const comp = r.comp && rbUrl(r.comp.url) ? ` · <a href="${esc(rbUrl(r.comp.url))}" target="_blank" rel="noopener">📎 ${esc(r.comp.nome || "comprovante")}</a>` : "";
+    const link = rbUrl(r.link) ? ` · <a href="${esc(rbUrl(r.link))}" target="_blank" rel="noopener">abrir link</a>` : "";
+    return `<div class="rb-row"><span class="rb-d">${fmtDataL(r.d).slice(0, 5)}</span>
+      <div class="rb-desc"><b>${esc(r.desc)}</b><small>${esc(r.cat || "")}${comp}${link}${r.obs ? ` · ${esc(r.obs)}` : ""}</small>${r.st === "recusado" && r.motivo ? `<small class="rb-mot">Motivo: ${esc(r.motivo)}</small>` : ""}</div>
+      <span class="rb-v">${fzBRL(r.v)}</span><span class="rb-st ${r.st}">${RB_ST[r.st] || r.st}</span><div class="rb-acts">${acts.join("")}</div></div>`;
   };
-  return `<div class="rbx" data-rbd="${pid}"><div class="wrap">
-    <header class="rxtop"><div><h1>Reembolsos FlashZ e Boltz</h1><p class="rxsub">${esc(nomeResp(pid))} · ${cap(nomeMes(mes))}</p></div>
-      <div class="grand"><div class="gbox f"><div class="lbl">flashz</div><strong>${brlx(tf)}</strong></div><div class="gbox b"><div class="lbl">boltz</div><strong>${brlx(tb)}</strong></div><div class="gbox t"><div class="lbl"><i></i><i></i>Total do mês</div><strong>${brlx(tf + tb)}</strong></div></div></header>
-    ${emModal ? `<div class="rxmes"><button type="button" class="mini" data-act="rb-mes" data-uid="${pid}" data-mes="${addMonths(mes, -1)}" aria-label="Mês anterior">‹</button><b>${cap(nomeMes(mes))}</b><button type="button" class="mini" data-act="rb-mes" data-uid="${pid}" data-mes="${addMonths(mes, 1)}" aria-label="Próximo mês">›</button></div>` : ""}
-    <div class="rxtabs" role="tablist" aria-label="Empresa">${Object.entries(RB_EMP).map(([k, e]) => `<button class="rxtab ${k === "flashz" ? "flash" : "bolt"}" role="tab" type="button" aria-selected="${k === emp}" data-act="rb-emp" data-uid="${pid}" data-emp="${k}"><span class="rxdot"></span>${e.nome} <span class="amt">${brlx(totE(mes, k))}</span></button>`).join("")}</div>
-    <section class="panel ${emp === "flashz" ? "flash" : "bolt"}" role="tabpanel">${painel(emp)}</section>
-  </div></div>`;
+  const pastas = rbMeses(pid).map(m => `<button class="rb-pasta ${m === mes ? "on" : ""}" data-act="rb-mes" data-uid="${pid}" data-mes="${m}" aria-pressed="${m === mes}"><b>${labelMes(m)}</b><small>${fzBRL(rbSoma(rbDoMes(pid, m)))} no total</small></button>`).join("");
+  const tabs = Object.entries(RB_EMP).map(([k, e]) => `<button class="rb-tab ${k} ${k === emp ? "on" : ""}" role="tab" aria-selected="${k === emp}" data-act="rb-emp" data-uid="${pid}" data-emp="${k}"><i style="background:var(--rb-${e.cor})"></i>${e.nome}<code>${fzBRL(tot[k])}</code></button>`).join("");
+  return `<div class="rbd" data-rbd="${pid}">
+    <div class="rb-top"><div><h1>Reembolsos FlashZ e Boltz</h1><p>${esc(nome)} · ${labelMes(mes)}</p></div>
+      <div class="rb-right"><div class="rb-pills"><div class="rb-pill fz"><span>FlashZ</span><b>${fzBRL(tot.flashz)}</b></div><div class="rb-pill bz"><span>Boltz</span><b>${fzBRL(tot.boltz)}</b></div>
+        <div class="rb-pill tot"><span><span class="rb-dots"><i style="background:var(--rb-fz)"></i><i style="background:var(--rb-bz)"></i></span>Total do mês</span><b>${fzBRL(tot.flashz + tot.boltz)}</b></div></div>
+        ${doMes.length ? `<span class="rb-sit">${fzBRL(aprov)} aprovado${pend ? ` · ${fzBRL(pend)} aguardando` : ""}</span>` : ""}</div></div>
+    <div class="rb-pastas">${pastas}</div>
+    <div class="rb-tabs" role="tablist">${tabs}</div>
+    <div class="rb-chip"><span class="${emp}">${emp}</span><em class="${emp}">reembolsos</em></div>
+    <div class="rb-h"><div><h2>Despesas ${E.nome} · ${mesMin}</h2><p>${lista.length ? `${lista.length} ${lista.length === 1 ? "despesa" : "despesas"} · ${fzBRL(rbSoma(lista))}` : "Nenhuma despesa lançada ainda"}</p></div>${ro ? "" : `<button class="rb-b" data-act="rb-nova" data-uid="${pid}">+ Adicionar despesa</button>`}</div>
+    ${rbDropHTML(pid)}
+    ${lista.length ? `<div class="rb-list">${lista.map(linha).join("")}<div class="rb-tot"><span>Total ${E.nome} em ${mesMin}</span><b>${fzBRL(rbSoma(lista))}</b></div></div>`
+      : `<div class="rb-vazio"><b>Pasta de ${mesMin} aberta</b><p>As despesas da ${E.nome} desse mês aparecem aqui assim que forem lançadas. Use “Adicionar despesa” e anexe o comprovante.</p></div>`}
+    <p class="rb-note">${admin ? `Ao aprovar, a despesa entra no total a receber de ${esc(nome.split(" ")[0])} no mês da despesa. Recusadas ficam na lista sem somar.` : "Cada despesa vai para a aprovação da Isabella. Depois de aprovada, entra no seu total a receber do mês da despesa (em Meu Financeiro)."}</p></div>`;
 }
 /* --- Leitura do print: Claude lê o print (Caju, nota, recibo, Pix) e separa FlashZ e Boltz; a pessoa confere antes de lançar --- */
 let SAMPLE = null, SAMPLE_IMG = null;
@@ -3761,103 +3710,68 @@ function rbRevisar(pid, linhas, imgs, emModal) {
       if (ASSETS) for (const i of new Set(sel.map(l => l.img))) { try { const up = await subirArquivo(imgs[i]); comps[i] = { id: up.id, url: up.url, nome: `print-${TODAY}${imgs.length > 1 ? `-${i + 1}` : ""}.jpg` }; } catch (_) { } }
       const agora = agoraIso();
       const novos = sel.map(l => ({ id: uid("rb"), emp: l.emp, d: l.d, desc: l.desc.slice(0, 120), cat: RB_CATS.includes(l.cat) ? l.cat : "Outros", v: Math.round(l.v * 100) / 100, comp: comps[l.img] || null, link: "", obs: "",
-        mesRef: ymOf(l.d) !== (RB.mes || CUR) ? (RB.mes || CUR) : "", env: TODAY, frente: "", comps: comps[l.img] ? [comps[l.img]] : [],
         criadoEm: agora, criadoPor: SESSION.userId, editadoEm: agora, origem: "print", st: admin ? "aprovado" : "pendente", motivo: "", ...(admin ? { decididoEm: agora, decididoPor: SESSION.userId } : {}) }));
       try { await rbGravar(pid, lista => { lista.push(...novos); }); }
       catch (_) { if (btn) { btn.disabled = false; btn.textContent = "Lançar despesas"; } toast("Não foi possível salvar. Verifique sua conexão."); return false; }
-      RB.emp = novos[0].emp; rbDepois(pid, emModal);
+      RB.mes = ymOf(novos[0].d); RB.emp = novos[0].emp; rbDepois(pid, emModal);
       const nf = novos.filter(x => x.emp === "flashz").length, nb = novos.length - nf;
       toast(`${novos.length} ${novos.length === 1 ? "despesa lançada" : "despesas lançadas"} (${nf} FlashZ, ${nb} Boltz)${admin ? "." : " e enviadas para aprovação."}`);
     } });
 }
 function viewReembolsos() {
-  if (isAdmin() && !SESSION.viewAs) {
-    const pessoas = FZ.usuarios.map(getUser).filter(Boolean); if (!pessoas.length) return pageHead("Reembolsos", "") + `<div class="card">${emptyState("Ninguém com reembolsos", "")}</div>`;
-    if (!pessoas.some(p => p.id === RB.pessoa)) RB.pessoa = pessoas[0].id;
-    const sel = pessoas.length > 1 ? `<div class="filters">${pessoas.map(p => `<button class="btn sm ${p.id === RB.pessoa ? "primary" : ""}" data-act="rb-pessoa" data-id="${p.id}">${esc(p.nome)}</button>`).join("")}</div>` : "";
-    return sel + rbDashHTML(RB.pessoa);
-  }
   const u = me(); if (!u || !rbPode(u.id)) return pageHead("Reembolsos", "") + `<div class="card">${emptyState("Sem reembolsos", "Esta área não está ativa para você.")}</div>`;
   return rbDashHTML(u.id);
 }
-function rbAbrirAdmin(pid) { openModal({ title: "Reembolsos", sub: esc(nomeResp(pid)), cls: "wide rb-modal", body: rbDashHTML(pid, true), foot: `<button type="button" class="btn" data-act="close-modal">Fechar</button>` }); }
+function rbAbrirAdmin(pid) { openModal({ title: "Reembolsos", sub: esc(nomeResp(pid)), cls: "wide rb-modal", body: rbDashHTML(pid), foot: `<button type="button" class="btn" data-act="close-modal">Fechar</button>` }); }
 function rbDepois(pid, emModal) { if (emModal) setTimeout(() => rbAbrirAdmin(pid), 0); else render(); }
 function rbForm(pid, id, emModal) {
   const r = id ? rbLista(pid).find(x => x.id === id) : null; if (id && !r) return;
-  const admin = isAdmin() && !SESSION.viewAs; const pasta = RB.mes || CUR;
-  if (r && !admin && (r.st === "aprovado" || r.st === "pago")) { toast("Despesa já aprovada. Para mudar, fale com a Isabella."); return; }
-  const dataDef = r?.d || (pasta === CUR ? TODAY : ymOf(TODAY) > pasta ? dateIn(pasta, dim(pasta)) : dateIn(pasta, 1));
-  const anexos = rbAnexos(r);
-  const novos = []; // arquivos escolhidos neste formulário
-  const pastaTxt = labelMes(pasta).toLowerCase();
-  openModal({ title: r ? "Editar despesa" : `Nova despesa · ${pastaTxt}`, sub: admin ? esc(nomeResp(pid)) : r?.st === "recusado" ? "Ao salvar, volta para a aprovação da Isabella" : "Vai para a aprovação da Isabella", cls: "drawer",
+  const admin = isAdmin() && !SESSION.viewAs; const mes = RB.mes || CUR;
+  if (r && !admin && r.st === "aprovado") { toast("Despesa já aprovada. Para mudar, fale com a Isabella."); return; }
+  const dataDef = r?.d || (mes === CUR ? TODAY : dateIn(mes, 1));
+  const compAtual = r?.comp && rbUrl(r.comp.url) ? `<div class="small" style="margin-bottom:6px">Anexado: <a href="${esc(rbUrl(r.comp.url))}" target="_blank" rel="noopener">${esc(r.comp.nome || "comprovante")}</a></div>` : "";
+  openModal({ title: r ? "Editar despesa" : "Nova despesa", sub: admin ? esc(nomeResp(pid)) : r?.st === "recusado" ? "Ao salvar, volta para a aprovação da Isabella" : "Vai para a aprovação da Isabella", cls: "drawer",
     body: `<div class="form">
       ${fld("Empresa", sel("emp", Object.entries(RB_EMP).map(([k, e]) => [k, e.nome]), r?.emp || RB.emp))}
       ${fld("Data da despesa", inp("d", dataDef, 'type="date" required'))}
       ${fld("Descrição", inp("desc", r?.desc || "", 'required maxlength="120" placeholder="Ex.: Uber até o Maracanã" autocomplete="off"'), { full: true })}
       ${fld("Categoria", sel("cat", RB_CATS.map(c => [c, c]), r?.cat || "Transporte"))}
       ${fld("Valor (R$)", inp("v", r ? brl(r.v) : "", 'inputmode="decimal" required placeholder="0,00" autocomplete="off"'))}
-      ${fld("Frente", `<input name="frente" list="rbFrentes" value="${esc(r?.frente || "")}" placeholder="Ex.: Maracanã, São Januário, Confut" autocomplete="off"><datalist id="rbFrentes">${[...new Set(rbLista(pid).map(x => x.frente).filter(Boolean))].map(f => `<option value="${esc(f)}">`).join("")}</datalist>`)}
-      ${fld("Pasta do mês", inp("mesRef", r ? rbMesDe(r) : pasta, 'type="month" required'), { hint: "A despesa aparece só na pasta deste mês." })}
-      <div class="field full"><label>Prints e comprovantes</label>
-        <div class="rb-anx" id="rbAnx"></div>
-        ${ASSETS ? `<label class="rb-pick"><input type="file" accept="${UP_ACCEPT}" multiple data-rb-pick hidden><b>📷 Selecionar prints</b><span>Escolha uma ou várias imagens (ou PDF), arraste para cá ou cole com Ctrl+V.</span></label>`
-          : `<p class="small muted" style="margin:0">O envio de arquivos não está disponível nesta conta agora. Cole um link abaixo.</p>`}
-        <input name="link" type="url" value="${esc(r?.link || "")}" placeholder="ou cole um link (Drive, Caju…)" style="margin-top:8px" aria-label="Link do comprovante"></div>
+      <div class="field full"><label>Comprovante</label>${compAtual}${ASSETS ? `<input type="file" name="arquivo" accept="${UP_ACCEPT}" aria-label="Arquivo do comprovante">` : ""}
+        <input name="link" type="url" value="${esc(r?.link || "")}" placeholder="${ASSETS ? "ou cole um link (Drive, Caju…)" : "Link do comprovante (Drive, Caju…)"}" style="margin-top:6px" aria-label="Link do comprovante"><span class="hint">Foto ou PDF da nota, até 20 MB.</span></div>
       ${fld("Observação", ta("obs", r?.obs || ""), { full: true })}</div>`,
-    foot: `<button type="button" class="btn" data-act="close-modal">Cancelar</button><button type="submit" class="btn primary" id="rbSalvar">${admin ? "Salvar despesa" : r ? "Salvar e enviar" : "Enviar para aprovação"}</button>`,
-    onMount: form => {
-      const box = form.querySelector("#rbAnx");
-      const desenha = () => {
-        box.innerHTML = [...anexos.map((a, i) => `<div class="rb-th">${String(a.tipo || a.nome || "").match(/pdf/i) ? `<span class="pdf">PDF</span>` : `<img src="${esc(rbUrl(a.url) || "")}" alt="">`}<a href="${esc(rbUrl(a.url))}" target="_blank" rel="noopener">${esc(a.nome || "print")}</a><button type="button" data-rm-a="${i}" aria-label="Remover">✕</button></div>`),
-          ...novos.map((f, i) => `<div class="rb-th novo">${f.type.startsWith("image/") ? `<img src="${URL.createObjectURL(f)}" alt="">` : `<span class="pdf">PDF</span>`}<span>${esc(f.name || "print")}</span><button type="button" data-rm-n="${i}" aria-label="Remover">✕</button></div>`)].join("") || "";
-        box.hidden = !anexos.length && !novos.length;
-      };
-      const add = files => { [...files].forEach(f => { if (f && (f.type.startsWith("image/") || /pdf/i.test(f.type) || /\.(pdf|jpe?g|png|webp|heic|heif|jfif)$/i.test(f.name || ""))) novos.push(f); }); if (novos.length + anexos.length > 8) { novos.splice(8 - anexos.length); toast("Até 8 arquivos por despesa."); } desenha(); };
-      form.querySelector("[data-rb-pick]")?.addEventListener("change", e => { add(e.target.files); e.target.value = ""; });
-      box.addEventListener("click", e => { const a = e.target.closest("[data-rm-a]"), n = e.target.closest("[data-rm-n]"); if (a) { anexos.splice(+a.dataset.rmA, 1); desenha(); } if (n) { novos.splice(+n.dataset.rmN, 1); desenha(); } });
-      const pick = form.querySelector(".rb-pick");
-      if (pick) { ["dragover", "dragenter"].forEach(ev => pick.addEventListener(ev, e => { e.preventDefault(); pick.classList.add("on"); })); ["dragleave", "drop"].forEach(ev => pick.addEventListener(ev, () => pick.classList.remove("on"))); pick.addEventListener("drop", e => { e.preventDefault(); add(e.dataTransfer.files); }); }
-      form.addEventListener("paste", e => { if (!ASSETS) return; const fs = [...(e.clipboardData?.files || [])]; if (fs.length) { e.preventDefault(); add(fs); } });
-      form.d.addEventListener("change", () => { if (!r && form.d.value && ymOf(form.d.value) !== form.mesRef.value && form.mesRef.value === pasta && ymOf(form.d.value) > pasta) { /* data de outro mês: mantém a pasta escolhida */ } });
-      desenha();
-    },
+    foot: `<button type="button" class="btn" data-act="close-modal">Cancelar</button><button type="submit" class="btn primary">${admin ? "Salvar despesa" : r ? "Salvar e enviar" : "Enviar para aprovação"}</button>`,
     onSubmit: async (d, form) => {
       const v = num(d.v); const desc = (d.desc || "").trim();
       if (!desc) { toast("Descreva a despesa."); return false; }
       if (!d.d) { toast("Informe a data."); return false; }
       if (!(v > 0)) { toast("Informe o valor."); return false; }
-      const mesPasta = /^\d{4}-\d{2}$/.test(d.mesRef || "") ? d.mesRef : ymOf(d.d);
-      if (!admin && getFech(pid, mesPasta)) { toast(`${labelMes(mesPasta)} já foi fechado no financeiro. Fale com a Isabella.`); return false; }
-      const btn = $("#rbSalvar");
-      let comps = anexos.slice();
-      if (novos.length) {
-        if (btn) { btn.disabled = true; btn.textContent = `Enviando ${novos.length} ${novos.length === 1 ? "arquivo" : "arquivos"}…`; }
-        for (const f of novos) { try { const up = await subirArquivo(f); comps.push({ id: up.id, url: up.url, nome: up.nome, tipo: up.tipo }); } catch (e) { if (btn) { btn.disabled = false; btn.textContent = "Tentar de novo"; } toast(msgUpload(e) + " Se preferir, cole um link."); return false; } }
+      if (!admin && getFech(pid, ymOf(d.d))) { toast(`${labelMes(ymOf(d.d))} já foi fechado no financeiro. Fale com a Isabella.`); return false; }
+      let comp = r?.comp || null; const file = form.querySelector('input[name="arquivo"]')?.files?.[0];
+      if (file) {
+        try { const up = await subirArquivo(file); comp = { id: up.id, url: up.url, nome: up.nome }; }
+        catch (e) { toast(msgUpload(e) + " Se preferir, cole um link."); return false; }
       }
-      const novo = { id: r?.id || uid("rb"), emp: RB_EMP[d.emp] ? d.emp : "flashz", d: d.d, desc, cat: d.cat, v, comps, comp: comps[0] || null, link: rbUrl((d.link || "").trim()), obs: (d.obs || "").trim(), frente: (d.frente || "").trim().slice(0, 60), mesRef: mesPasta !== ymOf(d.d) ? mesPasta : "", env: r?.env || TODAY,
+      const novo = { id: r?.id || uid("rb"), emp: RB_EMP[d.emp] ? d.emp : "flashz", d: d.d, desc, cat: d.cat, v, comp, link: rbUrl((d.link || "").trim()), obs: (d.obs || "").trim(),
         criadoEm: r?.criadoEm || agoraIso(), criadoPor: r?.criadoPor || SESSION.userId, editadoEm: agoraIso() };
       if (admin) { novo.st = r ? r.st : "aprovado"; novo.motivo = r?.motivo || ""; if (!r) { novo.decididoEm = agoraIso(); novo.decididoPor = SESSION.userId; } else { novo.decididoEm = r.decididoEm || ""; novo.decididoPor = r.decididoPor || ""; } }
       else { novo.st = "pendente"; novo.motivo = ""; }
-      if (admin && (novo.st === "aprovado" || novo.st === "pago") && getFech(pid, mesPasta)) { toast(`${labelMes(mesPasta)} já foi fechado para ${nomeResp(pid)}. Reabra o mês em Pagamentos.`); return false; }
+      if (admin && novo.st === "aprovado" && getFech(pid, ymOf(novo.d))) { toast(`${labelMes(ymOf(novo.d))} já foi fechado para ${nomeResp(pid)}. Reabra o mês em Pagamentos.`); return false; }
       let ok;
-      try { ok = await rbGravar(pid, lista => { const i = lista.findIndex(x => x.id === novo.id); if (i >= 0) { if (!admin && (lista[i].st === "aprovado" || lista[i].st === "pago")) return false; lista[i] = novo; } else lista.push(novo); }); }
-      catch (_) { if (btn) { btn.disabled = false; } toast("Não foi possível salvar. Verifique sua conexão."); return false; }
+      try { ok = await rbGravar(pid, lista => { const i = lista.findIndex(x => x.id === novo.id); if (i >= 0) { if (!admin && lista[i].st === "aprovado") return false; lista[i] = novo; } else lista.push(novo); }); }
+      catch (_) { toast("Não foi possível salvar. Verifique sua conexão."); return false; }
       if (!ok) { toast("Esta despesa acabou de ser aprovada e não pode mais ser alterada."); rbDepois(pid, emModal); return; }
-      RB.emp = novo.emp; if (mesPasta !== pasta) { RB.mes = mesPasta; if (!emModal) UI.mes = mesPasta; }
-      rbDepois(pid, emModal);
-      toast(`${admin ? "Despesa salva" : r ? "Despesa atualizada e enviada para aprovação" : "Despesa enviada para aprovação"} na pasta de ${labelMes(mesPasta).toLowerCase()}${comps.length ? ` com ${comps.length} ${comps.length === 1 ? "anexo" : "anexos"}` : ""}.`);
+      RB.mes = ymOf(novo.d); RB.emp = novo.emp; rbDepois(pid, emModal);
+      toast(admin ? "Despesa salva." : r ? "Despesa atualizada e enviada para aprovação." : "Despesa enviada para aprovação.");
     } });
 }
-/** anexos de uma despesa (compatível com o campo antigo "comp") */
-function rbAnexos(r) { if (!r) return []; const a = Array.isArray(r.comps) && r.comps.length ? r.comps : r.comp ? [r.comp] : []; return a.filter(x => x && rbUrl(x.url)).map(x => ({ ...x })); }
 async function rbDecidir(pid, id, st, motivo = "", emModal = false) {
   const r = rbLista(pid).find(x => x.id === id); if (!r || !isAdmin() || SESSION.viewAs) return;
   if (getFech(pid, ymOf(r.d)) && (st === "aprovado" || r.st === "aprovado")) { toast(`${labelMes(ymOf(r.d))} já foi fechado para ${nomeResp(pid)}. Reabra o mês em Pagamentos para alterar.`); return; }
   try { await rbGravar(pid, lista => { const x = lista.find(y => y.id === id); if (!x) return false; Object.assign(x, { st, motivo, decididoEm: agoraIso(), decididoPor: SESSION.userId }); }); }
   catch (_) { toast("Não foi possível salvar. Verifique sua conexão."); return; }
   rbDepois(pid, emModal);
-  toast(st === "aprovado" ? `Aprovado: ${fzBRL(r.v)} entram no total de ${nomeResp(pid)} em ${labelMes(rbMesDe(r))}.` : st === "pago" ? "Marcado como aprovado e pago." : `Recusado. ${nomeResp(pid).split(" ")[0]} vê o motivo na lista.`);
+  toast(st === "aprovado" ? `Aprovado: ${fzBRL(r.v)} entram no total de ${nomeResp(pid)} em ${labelMes(ymOf(r.d))}.` : `Recusado. ${nomeResp(pid).split(" ")[0]} vê o motivo na lista.`);
 }
 function rbRecusarModal(pid, id, emModal) {
   const r = rbLista(pid).find(x => x.id === id); if (!r) return;
@@ -3919,8 +3833,8 @@ function viewAprovacoes() {
   const pend = trabalhosTodos().filter(t => t.status === "pendente").sort((a, b) => a.data < b.data ? -1 : 1);
   const recentes = Object.values(S.trab).flatMap(T => T.itens).filter(t => t.decididoEm).sort((a, b) => a.decididoEm < b.decididoEm ? 1 : -1).slice(0, 10);
   const linha = t => `<div class="apv"><div class="apv-who">${avatar(getUser(t.userId))}<div><b>${esc(nomeResp(t.userId))}</b><span>${t.origem === "colaborador" ? "enviado pelo colaborador" : "lançado pelo admin"}</span></div></div>
-    <button class="apv-what" data-act="open-trab" data-id="${t.id}"><b>${esc(t.descricao || nomeTipo(t.tipoId))}</b><span>${fmtDataL(t.data)}, ${esc(nomeTipo(t.tipoId))}${t.marcaId ? `, ${esc(nomeMarca(t.marcaId))}` : ""}${t.projeto ? `, ${esc(t.projeto)}` : ""}</span>${t.obs ? `<span class="muted">${esc(t.obs)}</span>` : ""}</button>
-    <div class="apv-val"><label class="sr">Valor</label><span>R$</span><input inputmode="decimal" value="${esc(String(t.valor || "").replace(".", ","))}" data-apv-valor="${t.id}" aria-label="Valor de ${esc(t.descricao || "trabalho")}"></div>
+    <button class="apv-what" data-act="open-trab" data-id="${t.id}"><b>${esc(nomeTipo(t.tipoId))}</b><span>${fmtDataL(t.data)}, ${esc(nomeTipo(t.tipoId))}${t.marcaId ? `, ${esc(nomeMarca(t.marcaId))}` : ""}${t.projeto ? `, ${esc(t.projeto)}` : ""}</span>${t.obs ? `<span class="muted">${esc(t.obs)}</span>` : ""}</button>
+    <div class="apv-val"><label class="sr">Valor</label><span>R$</span><input inputmode="decimal" value="${esc(String(t.valor || "").replace(".", ","))}" data-apv-valor="${t.id}" aria-label="Valor de ${esc(nomeTipo(t.tipoId))}"></div>
     <div class="apv-acts">${btnExcluirTrab(t)}<button class="btn sm danger" data-act="recusar" data-id="${t.id}">Recusar</button><button class="btn sm primary" data-act="aprovar" data-id="${t.id}">${IC.check}Aprovar</button></div></div>`;
   return pageHead("Aprovações", pend.length ? `${pend.length} ${pend.length > 1 ? "trabalhos aguardam" : "trabalho aguarda"} decisão, ${fmtBRL(soma(pend, t => t.valor))}` : "Nada aguardando", pend.length > 1 ? `<button class="btn primary" data-act="aprovar-todos">${IC.check}Aprovar todos (${pend.length})</button>` : "") +
     rbAprovacoesHTML() + `<div class="card" style="margin-bottom:16px">${pend.length ? pend.map(linha).join("") : emptyState("Nenhum trabalho pendente", "Quando um colaborador registrar um trabalho, ele aparece aqui para você aprovar ou recusar.")}</div>
@@ -4420,7 +4334,6 @@ function formTrabalho(o = {}) {
     ${fld("Tipo de trabalho", sel("tipoId", S.dir.tipos.map(x => [x.id, `${x.nome}${x.grupo !== "avulso" ? ` (${GRUPOS[x.grupo].toLowerCase()})` : ""}`]), tipo0, 'data-change="tipo-trab" required'))}
     ${fld("Marca", marcaPickerHTML(t?.marcaId ?? o.marcaId ?? "", t?.marcaNova || ""))}
     ${fld("Projeto", inp("projeto", t?.projeto || o.projeto || "", 'placeholder="Ex.: Evento Kenner Gávea"'))}
-    ${fld("Descrição", inp("descricao", t?.descricao || o.descricao || "", 'required placeholder="Ex.: Evento Kenner — Gávea"'), { full: true })}
     ${admin ? fld("Valor (R$)", inp("valor", brl(val0), `inputmode="decimal" required data-sugerido="${esc(brl(getTipo(tipo0)?.valor || ""))}" ${travado ? "readonly" : ""}`), { hint: "Sugerido pela tabela; pode ser alterado neste lançamento." })
       : ""}
     ${admin ? fld("Status", sel("status", Object.entries(TRAB_ST).map(([k, v]) => [k, v.label]), t ? (ehEnvio ? "pendente" : t.status) : "aprovado", travado ? "disabled" : "")) : ""}
@@ -4437,7 +4350,7 @@ function formTrabalho(o = {}) {
       const mk = resolverMarcaForm(d); if (mk.erro) { toast(mk.erro); form_focoMarca(); return false; }
       if (!admin) {
         const cid = SESSION.mode === "conta" ? SESSION.cid : me().id;
-        const e = { ...(t || {}), id: t?.id || uid("t"), userId: me().id, cid, data: d.data, mes: ymOf(d.data), tipoId: d.tipoId, marcaId: mk.marcaId || "", projeto: d.projeto.trim(), descricao: d.descricao.trim(), obs: d.obs, valorSugerido: num(tp?.valor), demandaId: t?.demandaId || o.demandaId || "", criadoEm: t?.criadoEm || new Date().toISOString(), origem: "colaborador" };
+        const e = { ...(t || {}), id: t?.id || uid("t"), userId: me().id, cid, data: d.data, mes: ymOf(d.data), tipoId: d.tipoId, marcaId: mk.marcaId || "", projeto: d.projeto.trim(), obs: d.obs, valorSugerido: num(tp?.valor), demandaId: t?.demandaId || o.demandaId || "", criadoEm: t?.criadoEm || new Date().toISOString(), origem: "colaborador" };
         delete e.envio; delete e.status; delete e.valor; delete e.grupo; delete e.marcaNova; if (mk.nova) e.marcaNova = mk.nova;
         try { await Repo.be.set(`envios/${cid}/itens/${e.id}`, e); } catch (err) { toast("Não foi possível enviar. Verifique se você tem acesso de Colaborador ao app."); return false; }
         const i = S.envios.findIndex(x => x.id === e.id); if (i >= 0) S.envios[i] = e; else S.envios.push(e);
@@ -4450,7 +4363,7 @@ function formTrabalho(o = {}) {
       const valor = travado ? t.valor : num(d.valor);
       let x = t ? { ...t } : { id: uid("t"), criadoEm: new Date().toISOString(), criadoPor: SESSION.userId, origem: o.demandaId ? "demanda" : "admin", demandaId: o.demandaId || "" };
       delete x.envio; delete x.marcaNova;
-      Object.assign(x, { userId: d.userId, data: d.data, tipoId: d.tipoId, grupo: tp?.grupo || "avulso", marcaId: marcaIdAdm, projeto: d.projeto.trim(), descricao: d.descricao.trim(), obs: d.obs, valor, status });
+      Object.assign(x, { userId: d.userId, data: d.data, tipoId: d.tipoId, grupo: tp?.grupo || "avulso", marcaId: marcaIdAdm, projeto: d.projeto.trim(), obs: d.obs, valor, status });
       if (!travado) x.mes = ymOf(d.data);
       let aviso = "";
       if ((status === "aprovado" || status === "pago") && !travado) { const m = compAberta(x.userId, x.mes); if (m !== x.mes) { aviso = ` ${labelMes(x.mes)} está fechado; lançado em ${labelMes(m)}.`; x.mes = m; } }
@@ -4466,7 +4379,7 @@ function form_focoMarca() { const i = document.querySelector('#mform [name="marc
 function demandaParaTrabalho(id) {
   const f = findItem(id); if (!f) return; const it = f.it;
   const tipo = tipoPorNome(nomeCat(it.categoriaId)) || tipoPorNome(it.titulo);
-  formTrabalho({ demandaId: it.id, userId: it.responsavelId, data: it.concluidoEm || it.data, marcaId: it.marcaId, projeto: it.titulo, descricao: it.titulo, tipoId: tipo?.id });
+  formTrabalho({ demandaId: it.id, userId: it.responsavelId, data: it.concluidoEm || it.data, marcaId: it.marcaId, projeto: it.titulo, tipoId: tipo?.id });
 }
 async function decidir(id, status, { valor, motivo } = {}) {
   if (!isAdmin()) return;
@@ -4485,7 +4398,7 @@ async function decidir(id, status, { valor, motivo } = {}) {
 }
 function formRecusar(id) {
   const f = findTrab(id); if (!f) return;
-  openModal({ title: "Recusar trabalho", sub: `${esc(nomeResp(f.t.userId))}, ${esc(f.t.descricao || nomeTipo(f.t.tipoId))}`, body: `<div class="form">${fld("Motivo (o colaborador verá)", ta("motivo", "", 'placeholder="Ex.: já incluído no valor fixo"'), { full: true })}</div>`,
+  openModal({ title: "Recusar trabalho", sub: `${esc(nomeResp(f.t.userId))}, ${esc(nomeTipo(f.t.tipoId))}`, body: `<div class="form">${fld("Motivo (o colaborador verá)", ta("motivo", "", 'placeholder="Ex.: já incluído no valor fixo"'), { full: true })}</div>`,
     foot: `<button type="button" class="btn" data-act="close-modal">Voltar</button><button type="submit" class="btn danger">Recusar trabalho</button>`, onSubmit: d => { decidir(id, "recusado", { motivo: d.motivo.trim() }); } });
 }
 const trabTravado = t => !!(getFech(t.userId, t.mes) && (t.status === "aprovado" || t.status === "pago"));
@@ -4504,13 +4417,13 @@ function btnExcluirTrab(t) {
 async function excluirTrabColab(id) {
   const f = findTrab(id); if (!f) return;
   if (!colabPodeExcluir(f.t)) { toast(f.t.status === "pago" ? "Este trabalho já foi pago. Para corrigir, fale com a Isabella." : getFech(f.t.userId, f.t.mes) ? `${labelMes(f.t.mes)} já foi fechado. Para corrigir, fale com a Isabella.` : "Só dá para excluir trabalhos que você mesmo registrou. Fale com a Isabella."); return; }
-  const desc = `${f.t.descricao || nomeTipo(f.t.tipoId)}, em ${fmtDataL(f.t.data)}`;
+  const desc = `${nomeTipo(f.t.tipoId)}, em ${fmtDataL(f.t.data)}`;
   const txt = f.envio ? `${esc(desc)}. O envio é cancelado e não vai para aprovação.` : `${esc(desc)}. ${f.t.status === "aprovado" ? `Ele sai do seu total a receber de ${labelMes(f.t.mes)}.` : "Ele sai do seu histórico."} A Isabella é avisada.`;
   confirmModal("Excluir este trabalho?", txt, "Excluir", async () => {
     const cid = SESSION.mode === "conta" ? SESSION.cid : me().id;
     try {
       if (f.envio) { await Repo.be.del(`envios/${cid}/itens/${id}`); S.envios = S.envios.filter(e => e.id !== id); }
-      else { await Repo.be.set(`envios/${cid}/excluir/${id}`, { trabId: id, userId: me().id, mes: f.mes, descricao: f.t.descricao || nomeTipo(f.t.tipoId), valor: num(f.t.valor), em: agoraIso() });
+      else { await Repo.be.set(`envios/${cid}/excluir/${id}`, { trabId: id, userId: me().id, mes: f.mes, descricao: nomeTipo(f.t.tipoId), valor: num(f.t.valor), em: agoraIso() });
         S.trab[f.mes].itens = S.trab[f.mes].itens.filter(x => x.id !== id); }
     } catch (_) { toast("Não foi possível excluir. Verifique sua conexão."); return; }
     render(); toast("Trabalho excluído.");
@@ -4539,7 +4452,7 @@ async function excluirTrab(id) {
   if (!isAdmin()) return excluirTrabColab(id);
   const f = findTrab(id); if (!f) return;
   if (!f.envio && trabTravado(f.t)) { toast(`${labelMes(f.t.mes)} já foi fechado para ${nomeResp(f.t.userId)}. Reabra o mês em Pagamentos para excluir.`); return; }
-  const desc = `${f.t.descricao || nomeTipo(f.t.tipoId)}, de ${nomeResp(f.t.userId)}, em ${fmtDataL(f.t.data)}`;
+  const desc = `${nomeTipo(f.t.tipoId)}, de ${nomeResp(f.t.userId)}, em ${fmtDataL(f.t.data)}`;
   confirmModal("Excluir este trabalho?", `${desc}. Ele some do sistema e sai dos totais${f.t.ativId ? "; a atividade do calendário continua, sem o valor extra" : ""}.`, "Excluir", async () => {
     if (f.envio) { try { await Repo.be.del(`envios/${f.t.cid}/itens/${id}`); } catch (_) { toast("Não foi possível excluir."); return; } S.envios = S.envios.filter(e => e.id !== id); }
     else { S.trab[f.mes].itens = S.trab[f.mes].itens.filter(x => x.id !== id); Repo.touch("trab:" + f.mes); }
@@ -4663,7 +4576,7 @@ function resizeImage(file, max = 128) {
 }
 
 /* ---------- Eventos ---------- */
-const ADMIN_ACTS = new Set(["rb-pago", "rb-aprovar", "rb-recusar", "rb-abrir", "ho-remover", "ho-abrir", "excluir-contrato", "contrato-pdf-remover", "aloc-nova", "aloc-editar", "aloc-alterar", "aloc-excluir", "nova-marca", "editar-marca", "excluir-marca", "criar-contrato", "editar-contrato", "nova-obrigacao", "editar-obrigacao", "encerrar-obrigacao", "nova-demanda", "excluir-demanda", "registrar-pag", "gerar-mes", "novo-usuario", "editar-usuario", "excluir-usuario", "alterar-fixo", "del-fixo", "aprovar", "aprovar-todos", "recusar", "fechar", "fechar-todos", "pagar", "reabrir", "del-pagto", "acesso-aprovar", "acesso-desvincular", "acesso-recusar", "desvincular", "ver-como", "reset-senha", "export-csv", "export-folha", "export-custo", "backup", "zerar", "del-tipo", "del-cat", "open-marca", "open-colab", "baixar-relatorio", "export-csv"]);
+const ADMIN_ACTS = new Set(["rb-aprovar", "rb-recusar", "rb-abrir", "ho-remover", "ho-abrir", "excluir-contrato", "contrato-pdf-remover", "aloc-nova", "aloc-editar", "aloc-alterar", "aloc-excluir", "nova-marca", "editar-marca", "excluir-marca", "criar-contrato", "editar-contrato", "nova-obrigacao", "editar-obrigacao", "encerrar-obrigacao", "nova-demanda", "excluir-demanda", "registrar-pag", "gerar-mes", "novo-usuario", "editar-usuario", "excluir-usuario", "alterar-fixo", "del-fixo", "aprovar", "aprovar-todos", "recusar", "fechar", "fechar-todos", "pagar", "reabrir", "del-pagto", "acesso-aprovar", "acesso-desvincular", "acesso-recusar", "desvincular", "ver-como", "reset-senha", "export-csv", "export-folha", "export-custo", "backup", "zerar", "del-tipo", "del-cat", "open-marca", "open-colab", "baixar-relatorio", "export-csv"]);
 document.addEventListener("click", async e => {
   if (e.target.matches("[data-overlay]")) { closeModal(); openDay = null; return; }
   const el = e.target.closest("[data-act]");
@@ -4732,13 +4645,7 @@ document.addEventListener("click", async e => {
     case "fz-reset": { if (SESSION.viewAs) break; const u = el.dataset.uid; const emModal = !!el.closest("#modalRoot");
       confirmModal("Restaurar os valores da planilha?", "Os jogos voltam para os 5 jogos originais e as alterações feitas aqui são perdidas.", "Restaurar", () => { fzDados(u).jogos = clone(FZ_SEED); fzSalvar(u); if (emModal) fzAbrirAdmin(u); else render(); }); break; }
     case "fz-abrir": fzAbrirAdmin(el.dataset.uid); break;
-    case "rb-pessoa": RB.pessoa = id; render(); break;
-    case "rb-frente": RB.frente ||= {}; RB.frente[el.dataset.emp] = el.dataset.f; if (el.closest(".rb-modal")) rbAbrirAdmin(el.dataset.uid); else render(); break;
-    case "rb-pago": await rbDecidir(el.dataset.uid, id, "pago", "", !!el.closest(".rb-modal")); break;
-    case "rb-copiar": { const pid = el.dataset.uid, k = el.dataset.emp; const E = RB_EMP[k].nome; const f = RB.frente?.[k]; let D = rbDoMes(pid, RB.mes || CUR).filter(r => (r.emp || "flashz") === k).sort((a, b) => String(a.d).localeCompare(String(b.d))); if (f && f !== "Todas") D = D.filter(r => (r.frente || "Sem frente") === f);
-      const linhas = [["Data despesa", "Descrição", "Frente", "Categoria", "Valor", "Enviado em", "Status", "Empresa"], ...D.map(r => [fmtDataL(r.d), r.desc, r.frente || "", r.cat || "", (+r.v).toLocaleString("pt-BR", { minimumFractionDigits: 2 }), fmtDataL(r.env || String(r.criadoEm || "").slice(0, 10) || r.d), RB_ST[r.st] || r.st, E])].map(l => l.join("\t")).join("\n");
-      const t = document.querySelector(`[data-rb-toast="${k}"]`); try { await navigator.clipboard.writeText(linhas); if (t) t.textContent = "Copiado"; } catch (_) { if (t) t.textContent = "Não deu para copiar, selecione a tabela"; } setTimeout(() => { if (t) t.textContent = ""; }, 2500); break; }
-    case "rb-mes": RB.mes = el.dataset.mes; if (el.closest(".rb-modal")) rbAbrirAdmin(el.dataset.uid); else { RB.frente = {}; setMes(el.dataset.mes); } break;
+    case "rb-mes": RB.mes = el.dataset.mes; if (el.closest(".rb-modal")) rbAbrirAdmin(el.dataset.uid); else render(); break;
     case "rb-emp": RB.emp = el.dataset.emp; if (el.closest(".rb-modal")) rbAbrirAdmin(el.dataset.uid); else render(); break;
     case "rb-abrir": RB.mes = el.dataset.mes || UI.mes; rbAbrirAdmin(el.dataset.uid); break;
     case "rb-nova": if (!SESSION.viewAs) rbForm(el.dataset.uid, null, !!el.closest(".rb-modal")); break;
@@ -4947,7 +4854,7 @@ function busca(q) {
   }
   for (const it of meusItens(todosItens())) if (match(norm(`${it.titulo} ${nomeMarca(it.marcaId)} ${nomeCat(it.categoriaId)} ${nomeResp(it.responsavelId)} ${it.obs} ${it.local || ""} ${it.tipo} ${STATUS[stEf(it)].label}`))) out.itens.push(it);
   const ts = isAdmin() ? trabalhosTodos() : trabalhosDe(me().id);
-  for (const t of ts) if (match(norm(`${t.descricao} ${t.projeto} ${nomeTipo(t.tipoId)} ${nomeMarca(t.marcaId)} ${nomeResp(t.userId)} ${TRAB_ST[t.status].label}`))) out.trabs.push(t);
+  for (const t of ts) if (match(norm(`${t.projeto} ${nomeTipo(t.tipoId)} ${nomeMarca(t.marcaId)} ${nomeResp(t.userId)} ${TRAB_ST[t.status].label}`))) out.trabs.push(t);
   out.itens.sort((a, b) => Math.abs(diffDays(TODAY, a.data)) - Math.abs(diffDays(TODAY, b.data)));
   out.trabs.sort((a, b) => a.data < b.data ? 1 : -1);
   return out;
@@ -4960,7 +4867,7 @@ function busca(q) {
     box.innerHTML = (r.marcas.length ? `<h6>Marcas</h6>${r.marcas.map(m => `<button data-act="sr-marca" data-id="${m.id}">${logoHTML(m)}<span class="r-main"><b>${esc(m.nome)}</b><span>${esc(m.categoria || "")}</span></span></button>`).join("")}` : "") +
       (r.users.length ? `<h6>Pessoas</h6>${r.users.map(u => `<button data-act="sr-user" data-id="${u.id}">${avatar(u)}<span class="r-main"><b>${esc(u.nome)}</b><span>${PAPEL[u.papel].label}</span></span></button>`).join("")}` : "") +
       (r.itens.length ? `<h6>Demandas (${r.itens.length})</h6>${r.itens.slice(0, 20).map(it => `<button data-act="sr-demanda" data-id="${it.id}"><span class="dot" style="background:${STATUS[stEf(it)].c}"></span><span class="r-main"><b>${esc(it.titulo)}</b><span>${esc(nomeMarca(it.marcaId))}, ${fmtDataL(it.data)}, ${STATUS[stEf(it)].label}</span></span><span class="muted small">${labelMesC(it.mes)}</span></button>`).join("")}` : "") +
-      (r.trabs.length ? `<h6>Trabalhos (${r.trabs.length})</h6>${r.trabs.slice(0, 15).map(t => `<button data-act="sr-trab" data-id="${t.id}"><span class="r-main"><b>${esc(t.descricao || nomeTipo(t.tipoId))}</b><span>${isAdmin() ? esc(nomeResp(t.userId)) + ", " : ""}${fmtDataL(t.data)}, ${fmtBRL(t.valor)}, ${TRAB_ST[t.status].curto}</span></span></button>`).join("")}` : "") +
+      (r.trabs.length ? `<h6>Trabalhos (${r.trabs.length})</h6>${r.trabs.slice(0, 15).map(t => `<button data-act="sr-trab" data-id="${t.id}"><span class="r-main"><b>${esc(nomeTipo(t.tipoId))}</b><span>${isAdmin() ? esc(nomeResp(t.userId)) + ", " : ""}${fmtDataL(t.data)}, ${fmtBRL(t.valor)}, ${TRAB_ST[t.status].curto}</span></span></button>`).join("")}` : "") +
       (!r.marcas.length && !r.users.length && !r.itens.length && !r.trabs.length ? `<div class="empty">Nada encontrado para “${esc(q)}”.</div>` : "");
     box.classList.add("open"); hl = -1;
   }
@@ -5087,8 +4994,19 @@ async function entrarColaborador(id) {
   await exigirSenha(u, async () => { SESSION.userId = u.id; await carregarDados(); entrar(); });
 }
 async function carregarLocal() {
-  Repo.be = LocalBackend; SESSION.mode = "local";
-  if (!(await LocalBackend.get("pub/dir"))) { S = estadoInicial(); await LocalBackend.set("pub/dir", S.dir); await LocalBackend.set("adm/core", S.core); await LocalBackend.set("adm/equipe", S.equipe); }
+  const firebaseOk = await initFirebase();
+  if (firebaseOk && firebaseDB) {
+    Repo.be = FirestoreBackend(firebaseDB);
+    console.log("Usando Firebase Firestore para dados");
+  } else {
+    Repo.be = LocalBackend;
+    console.log("Usando localStorage para dados");
+  }
+  SESSION.mode = "local";
+  if (!(await Repo.be.get("pub/dir"))) { S = estadoInicial(); await Repo.be.set("pub/dir", S.dir); await Repo.be.set("adm/core", S.core); await Repo.be.set("adm/equipe", S.equipe); }
+  await carregarDados();
+}
+
   await carregarDados();
 }
 
@@ -5358,5 +5276,3 @@ setInterval(() => { if (SESSION.userId && Date.now() - ULTIMA_ATIV > 30 * 60000)
 </script>
 </body>
 </html>
-
-</body></html>
