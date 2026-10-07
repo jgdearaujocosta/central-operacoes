@@ -1,0 +1,7 @@
+{
+  "buildCommand": "echo 'Static deployment'",
+  "outputDirectory": ".",
+  "framework": "html",
+  "public": true,
+  "env": []
+}
